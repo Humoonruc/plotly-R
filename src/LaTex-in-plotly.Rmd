@@ -1,0 +1,89 @@
+---
+title: "LaTeX in Plotly"
+subtitle: ''
+author: "Humoon"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_download: yes
+    code_folding: hide
+    css: ../css/style.css
+    fig_caption: yes
+    theme: united
+    highlight: haddock
+    number_sections: no
+    toc: yes
+    toc_depth: 4
+    toc_float:
+      collapsed: yes
+      smooth_scroll: yes
+documentclass: ctexart
+classoption: hyperref,
+---
+
+```{r setup, include = FALSE}
+source("../lib/Rmarkdown_config.R")
+
+## global options ===================================
+knitr::opts_chunk$set(
+  width = config$width,
+  fig.width = config$fig.width,
+  fig.asp = config$fig.asp,
+  out.width = config$out.width,
+  fig.align = config$fig.align,
+  fig.path = config$fig.path,
+  fig.show = config$fig.show,
+  warn = config$warn,
+  warning = config$warning,
+  message = config$message,
+  echo = config$echo,
+  eval = config$eval,
+  tidy = config$tidy,
+  comment = config$comment,
+  collapse = config$collapse,
+  cache = config$cache,
+  cache.comments = config$cache.comments,
+  autodep = config$autodep
+)
+```
+
+
+```{r}
+source("../lib/plot-element.R")
+```
+
+
+```{r}
+# config
+xs <- c(1, 2, 3, 4)
+trace1 <- c(1, 4, 9, 16)
+trace2 <- c(0.5, 2, 4.5, 8)
+trace1_name <- TeX("\\alpha_{1c} = 352 \\pm 11 \\text{ km s}^{-1}")
+trace2_name <- TeX("\\beta_{1c} = 25 \\pm 11 \\text{ km s}^{-1}")
+title <- "Figure 1: LaTeX in plotly"
+xtitle <- TeX("\\sqrt{(n_\\text{c}(t|{T_\\text{early}}))}")
+ytitle <- TeX("d, r \\text{ (solar radius)}")
+
+
+# canvas
+p0 <- create_canvas() %>% config(mathjax = "cdn")
+
+
+# add layers
+p <- p0 %>%
+  add_markers(x = xs, y = trace1, name = trace1_name) %>%
+  add_markers(x = xs, y = trace2, name = trace2_name) %>%
+  layout(
+    title = list(text = title),
+    legend = list(x = 0, xanchor = "left"),
+    xaxis = list(title = xtitle),
+    yaxis = list(title = ytitle)
+  )
+p
+
+
+# 含有LaTeX公式的图，若保存时selfcontained=FALSE，
+# 则只有在（网络或本地）服务器上，主文件才能访问所需的依赖文件（mathjax），才能正确显示公式
+saveWidget(p, "../figure/LaTeX-in-plotly.html", selfcontained = F, libdir = "lib")
+saveWidget(p, "../figure/LaTeX-in-plotly-self-contained.html", selfcontained = T)
+```
