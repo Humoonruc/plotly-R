@@ -1,5 +1,9 @@
 [TOC]
 
+
+
+本项目地址：
+
 #  Plotly
 
 安装：https://plotly.com/r/getting-started/
@@ -35,15 +39,27 @@ p <- p0 %>%
 
 #### Updating figures
 
-https://plotly.com/r/creating-and-updating-figures/
+demo: https://plotly.com/r/creating-and-updating-figures/
 
-用`add_trace()`及其变体添加内容；用`style(p, marker=…, traces=...)` 更新图中部分 trace 的样式
+- `add_trace()`及其变体添加数据
 
-#### [export plotly figure](./src/export.html)
+- `style(p, marker=…, traces=...)` 更新图中部分 trace 的样式
+
+- `images()`,[update background layout images](https://plotly.com/r/displaying-images/)
+- `annotations()`, [update annotations](https://plotly.com/r/text-and-annotations/)
+- `shapes()`, [update shapes](https://plotly.com/r/shapes/)
+
+但它们都不能更新 trace 中的数据，只有 Plotly.js 提供的 `Plotly.animate(p, trace, ...)` 可以做到
+
+#### export plotly figure
+
+[export.Rmd](./Rmd/export.html)
 
 将 plotly 生成的图保存为外部文件
 
-#### [LaTeX in plotly](./src/LaTeX-in-plotly.html)
+#### LaTeX in plotly
+
+<a href='./Rmd/LaTeX-in-plotly.html'><img src='./figure/LaTeX-in-plotly.svg'></a>
 
 含有 $\LaTeX$ 的图，若保存时`selfcontained=FALSE`，则只有在（网络或本地）服务器上，主文件才能访问所需的依赖文件（mathjax），从而正确显示公式。
 
@@ -51,7 +67,9 @@ https://plotly.com/r/creating-and-updating-figures/
 
 ### Basic Charts
 
-#### [Bar Charts](./src/bar-chart.html)
+#### Bar Charts
+
+<a href='./Rmd/bar-chart.html'><img src='./figure/bar-chart.svg'></a>
 
 #### Pie Charts
 
@@ -60,6 +78,8 @@ https://plotly.com/r/creating-and-updating-figures/
 点击可折叠
 
 #### Tables
+
+<a href='./Rmd/table.html'><img src='./figure/table.svg'></a>
 
 可拖动列
 
@@ -71,7 +91,9 @@ https://plotly.com/r/creating-and-updating-figures/
 
 #### Regression
 
-https://plotly.com/r/ml-regression/
+<a href='./Rmd/regression.html'><img src='./figure/regression.svg'></a>
+
+more demo: https://plotly.com/r/ml-regression/
 
 ### Scientific Charts
 
@@ -91,7 +113,7 @@ https://plotly.com/r/ml-regression/
 
 #### Display Image Data
 
-https://plotly.com/r/displaying-images/
+more demo: https://plotly.com/r/displaying-images/
 
 ### Financial Charts
 
@@ -123,7 +145,7 @@ K 线图
 
 #### 2D Basic Subplots
 
-https://plotly.com/r/subplots/
+more demo: https://plotly.com/r/subplots/
 
 多张图任意拼在一张图上，涉及共享坐标轴、图例等问题
 
@@ -134,8 +156,6 @@ https://plotly.com/r/subplots/
 #### 3D Subplots
 
 #### Mixed Subplots
-
-#### 
 
 ### Transforms
 
@@ -157,9 +177,37 @@ https://plotly.com/r/subplots/
 
 ### Animations
 
-考虑上比较节省空间的 Plotly.js，甚至 D3.js
+制作动画有两种思路：
+
+1. 为数据框单独设置一个时间轴变量，每帧只显示部分数据，这是`R plotly`使用的方式。这造成数据量非常大，而且必须提前计算好，使用起来不够灵活——但也不是不能做。
+   1. 比如平面上一个旋转过程，必须给出所有中间角度的变换矩阵，计算出过程中每一帧的坐标，组成一个大数据框，并将 frame 映射为时间。
+2. 间隔一定时间，实时更新数据，这是`plotly.js`使用的方式。制作动画，还是`plotly.js`或`d3.js`效果更好一些，更值得深入研究。
+   1. 动画属性文档: https://github.com/plotly/plotly.js/blob/master/src/plots/animation_attributes.js
+   2. button 属性文档: https://github.com/plotly/plotly.js/blob/master/src/components/updatemenus/attributes.js
+   3. slider 属性文档: https://github.com/plotly/plotly.js/blob/master/src/components/sliders/attributes.js
+
+#### Basic and Cumulative Animations
+
+<a href='./Rmd/animation.html'><img src='./figure/animation/gapminder.svg'></a>
 
 
+
+```R
+plotly::animation_opts(
+  p,
+  frame = 500,
+  transition = frame,
+  easing = "linear",
+  redraw = TRUE,
+  mode = "immediate"
+)
+```
+
+`animation_opts()`设置动画属性，`frame`设置两帧之间的时间（毫秒），`transition`设置平滑动画的时间，`easing`设置插值的方式，
+
+`animation_slider()`设置时间轴，`hide = FALSE`可以将其隐藏
+
+`animation_button()`设置开启动画的按钮，`label`属性可设置其上的文字
 
 
 
@@ -351,87 +399,9 @@ locale, 设置本地（语言、日期等）格式
 
 
 
-## Turn ggplot2 to plotly
-
-`ggplotly()`可以将ggplot2图对象转化为 plotly 图对象，然后使用plotly的API操作
 
 
-## Animation
 
-
-动画属性文档: https://github.com/plotly/plotly.js/blob/master/src/plots/animation_attributes.js
-
-button 属性文档: https://github.com/plotly/plotly.js/blob/master/src/components/updatemenus/attributes.js
-
-slider 属性文档: https://github.com/plotly/plotly.js/blob/master/src/components/sliders/attributes.js
-
-```{r}
-x <- rnorm(100) %>% sort()
-y <- 0.5 * x + rnorm(100, sd = 0.1)
-
-dt <- data.table(
-  x = x,
-  y = y,
-  f = 1:1000
-)
-
-animation <- plot_ly(
-  data = dt,
-  x = ~x,
-  y = ~y,
-  type = "scatter",
-  mode = "markers",
-  marker = list(color = "lightgrey", opacity = 0.5)
-) %>%
-  add_trace(
-    x = ~x,
-    y = ~y,
-    frame = ~f, # frame 为滑动条
-    type = "scatter",
-    mode = "markers",
-    showlegend = F,
-    marker = list(color = "red")
-  ) %>%
-  std_animate()
-
-animation %>%
-  saveWidget("./animation/demo.html",
-             selfcontained = F,
-             libdir = "lib")
-
-animation
-```
-
-```{r}
-animation <- gapminder::gapminder %>%
-  plot_ly(
-    x = ~gdpPercap,
-    y = ~lifeExp,
-    size = ~pop,
-    color = ~continent,
-    frame = ~year,
-    text = ~country,
-    hoverinfo = "text", # 鼠标悬停时只显示国名
-    type = "scatter",
-    mode = "markers"
-  ) %>%
-  layout(
-    # x轴改为对数坐标
-    xaxis = list(type = "log")
-  ) %>%
-  std_animate()
-
-animation %>%
-  saveWidget("./animation/动态气泡图.html", selfcontained = F, libdir = "lib")
-
-animation
-```
-
-
-```{r echo=FALSE}
-# 允许用户从页面下载文件
-xfun::embed_file("./animation/动态气泡图.zip", text = "下载该 htmlwidget 以嵌入目标网页")
-```
 
 ## 保存与嵌入
 
@@ -511,3 +481,9 @@ htmlwidgets::saveWidget(p, "./figure/Not-self-contain.html", selfcontained = F, 
 ```
 
 注：Rmarkdown 中用`<iframe>`语法似乎无效，但直接打印 plotly 图像（`print(p)`或直接`p`），即可使之出现在最终导出的 html 中。
+
+
+
+## Turn ggplot2 to plotly
+
+`ggplotly()`可以将ggplot2图对象转化为 plotly 图对象，然后使用plotly的API操作

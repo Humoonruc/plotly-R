@@ -1,0 +1,1438 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fff;
+    --control-text-color: #777;
+    --active-file-border-color: var(--drake-accent);
+    --drake-accent: #e95f59;
+    --drake-highlight: #d63200;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "JetBrains Mono", Menlo, Consolas !important;
+    color: #333333;
+    -webkit-font-smoothing: auto;
+    line-height: 1.6rem;
+    letter-spacing: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+img {
+    border-radius: 2px;
+}
+
+#write {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 30px 100px;
+}
+
+#write p {
+    line-height: 1.6rem;
+    word-spacing: .05rem;
+}
+
+#write>ul:first-child,
+#write>ol:first-child {
+    margin-top: 30px;
+}
+
+body>*:first-child {
+    margin-top: 0 !important;
+}
+
+body>*:last-child {
+    margin-bottom: 0 !important;
+}
+
+a {
+    color: var(--drake-highlight);
+    padding: 0 2px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+    color: #273849;
+}
+
+h6 {
+    margin-top: 0.5rem;
+    margin-bottom: 0rem;
+
+}
+
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+
+
+h1 tt,
+h1 code {
+    font-size: inherit !important;
+}
+
+h2 tt,
+h2 code {
+    font-size: inherit !important;
+}
+
+h3 tt,
+h3 code {
+    font-size: inherit !important;
+}
+
+h4 tt,
+h4 code {
+    font-size: inherit !important;
+}
+
+h5 tt,
+h5 code {
+    font-size: inherit !important;
+}
+
+h6 tt,
+h6 code {
+    font-size: inherit !important;
+}
+
+h2 a,
+h3 a {
+    color: #34495e;
+}
+
+h1 {
+    padding-bottom: .4rem;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-top: 0;
+    line-height: 1.3;
+}
+
+h2 {
+    font-size: 1.75rem;
+    line-height: 1.225;
+    margin: 35px 0 15px;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #eaecef;
+}
+
+h3 {
+    font-size: 1.4rem;
+    line-height: 1.43;
+    margin: 20px 0 7px;
+}
+
+h4 {
+    font-size: 1.2rem;
+}
+
+h5 {
+    font-size: 1rem;
+}
+
+h6 {
+    font-size: 0.9em;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: normal;
+    padding: 3px 10px 1px;
+    background-color: #909090;
+    border-radius: 3em;
+    line-height: 1.5;
+}
+
+p,
+blockquote,
+ul,
+ol,
+dl,
+table {
+    margin: 0.8em 0;
+}
+
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+body>h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body>h1:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body>h1:first-child+h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body>h3:first-child,
+body>h4:first-child,
+body>h5:first-child,
+body>h6:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+a:first-child h1,
+a:first-child h2,
+a:first-child h3,
+a:first-child h4,
+a:first-child h5,
+a:first-child h6 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+h1 p,
+h2 p,
+h3 p,
+h4 p,
+h5 p,
+h6 p {
+    margin-top: 0;
+}
+
+li p.first {
+    display: inline-block;
+}
+
+ul,
+ol {
+    padding-left: 30px;
+}
+
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+
+blockquote {
+    color: #304455;
+    border-radius: 2px;
+    padding: 10px 16px;
+    background-color: #fdefee;
+    position: relative;
+    border-left: none;
+}
+
+/*quote block*/
+blockquote:before {
+    display: block;
+    position: absolute;
+    content: '';
+    width: 4px;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: var(--drake-accent);
+    border-radius: 2px;
+}
+
+#write strong {
+    padding: 0 1px;
+}
+
+table {
+    padding: 0;
+    word-break: initial;
+}
+
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+
+table tr:nth-child(2n),
+thead {
+    background-color: #fafafa;
+}
+
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+
+table tr td {
+    border: 1px solid #dfe2e5;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+#write em {
+    padding: 0 5px 0 2px;
+}
+
+#write table thead th {
+    background-color: #f2f2f2;
+}
+
+#write .CodeMirror-gutters {
+    border-right: none;
+}
+
+/*code block*/
+#write .md-fences {
+    font-size: 1rem;
+    padding: 0.5rem !important;
+    border-radius: 2px;
+    font-family: inherit !important;
+    word-wrap: normal;
+    background-color: #2b2b2b;
+    color: #A9B7C6;
+    border: none;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+/*code snippet*/
+#write code,
+tt {
+    margin: 0 2px;
+    border-radius: 2px;
+    font-family: initial !important;
+    color: var(--drake-highlight);
+}
+
+/* heighlight. */
+#write mark {
+    background-color: #e7ecf3;
+    color: inherit;
+    border-radius: 2px;
+    padding: 2px 2px;
+    margin: 0 2px;
+}
+
+#write del {
+    padding: 1px 2px;
+}
+
+.cm-s-inner .cm-link,
+.cm-s-inner.cm-link {
+    color: #22a2c9;
+}
+
+.cm-s-inner .cm-string {
+    color: #22a2c9;
+}
+
+.md-task-list-item>input {
+    margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+#write pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 2px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+    bottom: .375rem;
+}
+
+#write>h3.md-focus:before {
+    left: -1.5625rem;
+    top: .375rem;
+}
+
+#write>h4.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write>h5.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write>h6.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+.md-image>.md-meta {
+    border-radius: 2px;
+    font-family: initial;
+    padding: 2px 0 0 4px;
+    color: inherit;
+}
+
+.md-tag {
+    color: inherit;
+}
+
+.md-toc {
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+.typora-quick-open-item {
+    font-size: 1rem !important;
+    height: 48px;
+    padding-left: 8px;
+    padding-top: 4px;
+}
+
+#md-notification:before {
+    top: 10px;
+}
+
+/** focus mode */
+
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header,
+.context-menu,
+.megamenu-content,
+footer {
+    font-family: initial;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state {
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    font-size: 1rem;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+
+/*insert element*/
+
+span.cm-comment {
+    /* color: #b8f1cc !important; */
+    color: #82e0aa !important;
+    font-style: italic;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 15px;
+}
+
+.ty-quick-open-category.ty-has-prev .ty-quick-open-category-title {
+    border-top: none;
+}
+
+.file-list-item-summary {
+    font-family: initial;
+}
+
+#typora-quick-open-input {
+    margin: 8px;
+    box-shadow: none;
+    border-radius: 2px;
+}
+
+#typora-quick-open-input input {
+    font-size: 1rem;
+    box-shadow: none;
+    padding-top: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 32px;
+    max-height: 32px;
+}
+
+.modal-dialog#typora-quick-open {
+    border-radius: 2px;
+}
+
+.ty-quick-open-category-title {
+    padding-left: 8px;
+    color: #BEBEBE;
+}
+
+.typora-quick-open-item-path {
+    font-size: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.outline-item {
+    font-size: 1rem;
+}
+
+.sidebar-tab {
+    font-size: 1rem;
+}
+
+/*footnotes mark*/
+#write .md-footnote {
+    background-color: inherit;
+    color: var(--drake-highlight);
+    font-size: 0.9rem;
+    border-radius: 0.9rem;
+    padding-left: 0;
+}
+
+#write .md-footnote:before {
+    content: "[";
+}
+
+#write .md-footnote:after {
+    content: "]";
+}
+
+/*footnotes content*/
+.md-hover-tip .code-tooltip-content {
+    border-radius: 2px;
+}
+
+/*footnotes title*/
+span.md-def-name {
+    padding-right: 3ch;
+    padding-left: 0;
+    position: relative;
+    font-weight: normal;
+}
+
+/*footnotes desc*/
+.footnotes {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #304455;
+    position: relative;
+}
+
+/*footnotes tooltip text*/
+.code-tooltip-content .md-plain {
+    font-size: 0.9rem;
+    font-family: inherit;
+}
+
+.code-tooltip-content code {
+    padding: 0 2px;
+    font-family: inherit;
+    color: #FFD760;
+    background-color: inherit;
+}
+
+.code-tooltip-content a {
+    color: #FFD760;
+}
+
+div.code-tooltip-content {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.footnotes {
+    opacity: 1;
+}
+
+.md-def-name:after {
+    content: ". ^";
+    color: #304455;
+}
+
+.md-def-footnote .md-def-name:before {
+    content: "";
+    color: #304455;
+    position: absolute;
+}
+
+.md-def-name:before {
+    content: "";
+    color: #304455;
+    position: absolute;
+}
+
+.CodeMirror-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.file-list-item-summary {
+    font-size: 1em;
+}
+
+.pin-outline #outline-content .outline-active strong,
+.pin-outline .outline-active {
+    font-weight: 500;
+    color: var(--drake-highlight);
+}
+
+.file-list-item.active {
+    border-left: 4px solid var(--drake-accent);
+}
+
+/**
+    code render
+    Name: IntelliJ IDEA darcula theme
+    From IntelliJ IDEA by JetBrains
+ */
+/*.cm-s-inner  {  }*/
+.cm-s-inner.CodeMirror {
+    background: #2B2B2B;
+    color: #A9B7C6;
+    font-family: Consolas, 'Courier New', monospace;
+}
+
+.cm-s-inner span.cm-meta {
+    color: #BBB529;
+}
+
+.cm-s-inner span.cm-number {
+    color: #6897BB;
+}
+
+.cm-s-inner span.cm-keyword {
+    color: #CC7832;
+}
+
+.cm-s-inner span.cm-def {
+    color: #FFD760;
+}
+
+.cm-s-inner span.cm-variable {
+    color: #A9B7C6;
+}
+
+.cm-s-inner span.cm-variable-2 {
+    color: #A9B7C6;
+}
+
+.cm-s-inner span.cm-variable-3 {
+    color: #9876AA;
+}
+
+.cm-s-inner span.cm-type {
+    color: #AABBCC;
+}
+
+.cm-s-inner span.cm-property {
+    color: #FFC66D;
+}
+
+.cm-s-inner span.cm-operator {
+    color: #A9B7C6;
+}
+
+.cm-s-inner span.cm-string {
+    color: #6A8759;
+    font-family: Consolas, 'Courier New', monospace;
+}
+
+.cm-s-inner span.cm-string-2 {
+    color: #6A8759;
+}
+
+.cm-s-inner span.cm-comment {
+    color: #61A151;
+}
+
+.cm-s-inner span.cm-link {
+    color: #CC7832;
+}
+
+.cm-s-inner span.cm-atom {
+    color: #CC7832;
+}
+
+.cm-s-inner span.cm-error {
+    color: #BC3F3C;
+}
+
+.cm-s-inner span.cm-tag {
+    color: #E8BF6A;
+}
+
+.cm-s-inner span.cm-quote {
+    color: #a6e22e;
+}
+
+.cm-s-inner span.cm-attribute {
+    color: #9876AA;
+}
+
+.cm-s-inner span.cm-qualifier {
+    color: #6A8759;
+}
+
+.cm-s-inner span.cm-bracket {
+    color: #E8BF6A;
+}
+
+.cm-s-inner span.cm-builtin {
+    color: #FF9E59;
+}
+
+.cm-s-inner span.cm-special {
+    color: #FF9E59;
+}
+
+.cm-s-inner span.cm-matchhighlight {
+    color: #FFFFFF;
+    background-color: rgba(50, 89, 48, .7);
+    font-weight: normal;
+}
+
+.cm-s-inner span.cm-searching {
+    color: #FFFFFF;
+    background-color: rgba(61, 115, 59, .7);
+    font-weight: normal;
+}
+
+.cm-s-inner .CodeMirror-cursor {
+    border-left: 1px solid #A9B7C6;
+}
+
+.cm-s-inner .CodeMirror-gutters {
+    background: #313335;
+    border-right: 1px solid #313335;
+}
+
+.cm-s-inner .CodeMirror-guttermarker {
+    color: #FFEE80;
+}
+
+.cm-s-inner .CodeMirror-guttermarker-subtle {
+    color: #D0D0D0;
+}
+
+.cm-s-inner .CodeMirrir-linenumber {
+    color: #606366;
+}
+
+.cm-s-inner .CodeMirror-matchingbracket {
+    background-color: #3B514D;
+    color: #FFEF28 !important;
+}
+
+.cm-s-inner .CodeMirror-selected {
+    background: #214283 !important;
+}
+
+.cm-s-inner .CodeMirror-selectedtext {
+    background: #214283 !important;
+}
+
+.cm-overlay.CodeMirror-selectedtext {
+    background: #B5D6FC !important;
+}
+
+.cm-s-inner div.CodeMirror-cursor {
+    border-left: 1px solid #ffffff;
+}
+
+html {
+  font-size: 17px;
+}
+
+
+/* 列表项 */
+
+ul,
+ol {
+  margin: 0 0 0.5em 0em;
+}
+
+h3+ul,
+h4+ul,
+h5+ul,
+h6+ul,
+h3+ol,
+h4+ol,
+h5+ol,
+h6+ol {
+  margin-top: 0.5em;
+}
+
+p+ul,
+p+ol {
+  margin-top: 0.5em;
+}
+
+li>ul,
+li>ol {
+  margin-top: inherit;
+  margin-bottom: 0;
+  margin-left: 0.5em;
+}
+
+ul>li {
+  list-style-type: disc;
+  list-style-position: outside;
+}
+
+li ul>li {
+  list-style-type: circle;
+}
+
+ol>li {
+  list-style-type: decimal;
+  list-style-position: outside;
+}
+
+li ol>li {
+  list-style-type: upper-alpha;
+}
+
+li li ol>li {
+  list-style-type: lower-greek;
+}
+
+
+/* 多级标题 */
+
+h1 {
+  font-weight: bolder;
+  font-size: 50px;
+  text-align: center;
+  color: red;
+  font-weight: bold;
+}
+
+h2 {
+  text-align: center;
+  font-size: 40px;
+  counter-increment: chapter;
+  counter-reset: section;
+  color: purple;
+  font-weight: bold;
+}
+
+h3 {
+  color: darkslateblue;
+  font-weight: bold;
+  line-height: 150%;
+  font-size: 36px;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  /* counter-increment: section; */
+  /* counter-reset: counter1; */
+  text-align: center;
+  /* font-weight: bold; */
+}
+
+h4 {
+  /* background-color: lightgray; */
+  /* color: darkblue; */
+  /* line-height: 150%; */
+  font-size: 24px;
+  /* font-family: "Microsoft YaHei"; */
+  /* font-weight: bold; */
+  /* counter-increment: counter1; */
+  /* counter-reset: counter2; */
+}
+
+h5 {
+  font-size: 20px;
+  font-weight: bold;
+  /* font-family: "Microsoft YaHei"; */
+  /* counter-increment: counter2; */
+  /* counter-reset: counter3; */
+}
+
+h6 {
+  /* counter-increment: counter3; */
+}
+
+h2:before {
+  /* content: counter(chapter, cjk-ideographic)"、"; */
+}
+
+h3:before {
+  /* content: counter(section)' '; */
+}
+
+h4:before {
+  /* content: counter(counter1, cjk-ideographic)'、'; */
+}
+
+h5:before {
+  /* content: '（'counter(counter2, cjk-ideographic)'）'; */
+}
+
+h6:before {
+  /* content: counter(counter3)'. '; */
+}
+
+
+/* 正文 */
+
+p {
+  font-size: 17px;
+}
+
+/* 链接 */
+
+a {
+  /* font-family: 'PT Serif'; */
+  font-weight: normal;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* strong */
+
+/* #write strong {
+  background: #ecd609;
+  font-weight: normal;
+  padding-top: 2px;
+  padding-bottom: 0.5px;
+  padding-left: 1px;
+  padding-right: 1px;
+  border-radius: 2px;
+} */
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+							stroke-width: 0;
+						}
+</style><title>README</title>
+</head>
+<body class='typora-export os-windows typora-export-show-outline typora-export-collapse-outline'><div class='typora-export-content'>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#plotly-1">Plotly</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#grammar">Grammar</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#updating-figures">Updating figures</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#export-plotly-figure">export plotly figure</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#latex-in-plotly">LaTeX in plotly</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#gallery">Gallery</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#basic-charts">Basic Charts</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#bar-charts">Bar Charts</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#pie-charts">Pie Charts</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#sunburst-charts">Sunburst Charts</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#tables">Tables</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#treemap-charts">Treemap Charts</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#statistical-charts">Statistical Charts</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#regression">Regression</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#scientific-charts">Scientific Charts</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#log-plots">Log Plots</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#contour-plots">Contour Plots</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#heatmaps">Heatmaps</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#network-graph">Network Graph</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#carpet-plot">Carpet Plot</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#polar-charts">Polar Charts</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#display-image-data">Display Image Data</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#financial-charts">Financial Charts</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#time-series-and-date-axes">Time Series and Date Axes</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#candlestick-charts">Candlestick Charts</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#maps">Maps</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#filled-area-in-mapbox">Filled Area in Mapbox</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#3d-charts">3D Charts</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#3d-scatter-line-mesh-cone">3D Scatter, Line, Mesh, Cone</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#3d-surface">3D Surface</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#3d-tri-surf-plots">3D Tri-Surf Plots</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#subplots">Subplots</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#2d-basic-subplots">2D Basic Subplots</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#inset-plots">Inset Plots</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#map-subplots">Map Subplots</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#3d-subplots">3D Subplots</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#mixed-subplots">Mixed Subplots</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#transforms">Transforms</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#filter">Filter</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#group-by">Group By</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#aggregations">Aggregations</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#控件">控件</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#buttons">Buttons</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#dropdown-events">Dropdown Events</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#range-sliders-and-selectors">Range Sliders and Selectors</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#sliders">Sliders</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#animations">Animations</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#basic-and-cumulative-animations">Basic and Cumulative Animations</a></div><ul class="outline-children"></ul></li></ul></li></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#参数">参数</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#plotly-2">plot_ly()</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#addtrace">add_trace()</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#layout">layout()</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#title">title</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#legend">legend</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#margins">margins</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#colors">colors</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#dragmode">dragmode</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#xaxis-yaxis">xaxis, yaxis</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#shapes">shapes</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#images">images</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#config">config()</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#保存与嵌入">保存与嵌入</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#保存为静态文件">保存为静态文件</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#保存为html并嵌入网页">保存为.html并嵌入网页</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#保存为独立的-html">保存为独立的 .html</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#保存为-html-及其依赖文件">保存为 .html 及其依赖文件</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#嵌入网页">嵌入网页</a></div><ul class="outline-children"></ul></li></ul></li></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#turn-ggplot2-to-plotly">Turn ggplot2 to plotly</a></div><ul class="outline-children"></ul></li></ul></li></div></div><div id='write'  class=''><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n2"><a class="md-toc-inner" href="#plotly-1">Plotly</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n7"><a class="md-toc-inner" href="#grammar">Grammar</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n12"><a class="md-toc-inner" href="#updating-figures">Updating figures</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n26"><a class="md-toc-inner" href="#export-plotly-figure">export plotly figure</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n28"><a class="md-toc-inner" href="#latex-in-plotly">LaTeX in plotly</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n30"><a class="md-toc-inner" href="#gallery">Gallery</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n31"><a class="md-toc-inner" href="#basic-charts">Basic Charts</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n32"><a class="md-toc-inner" href="#bar-charts">Bar Charts</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n33"><a class="md-toc-inner" href="#pie-charts">Pie Charts</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n34"><a class="md-toc-inner" href="#sunburst-charts">Sunburst Charts</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n36"><a class="md-toc-inner" href="#tables">Tables</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n39"><a class="md-toc-inner" href="#treemap-charts">Treemap Charts</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n40"><a class="md-toc-inner" href="#statistical-charts">Statistical Charts</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n41"><a class="md-toc-inner" href="#regression">Regression</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n43"><a class="md-toc-inner" href="#scientific-charts">Scientific Charts</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n44"><a class="md-toc-inner" href="#log-plots">Log Plots</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n45"><a class="md-toc-inner" href="#contour-plots">Contour Plots</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n47"><a class="md-toc-inner" href="#heatmaps">Heatmaps</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n48"><a class="md-toc-inner" href="#network-graph">Network Graph</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n49"><a class="md-toc-inner" href="#carpet-plot">Carpet Plot</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n50"><a class="md-toc-inner" href="#polar-charts">Polar Charts</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n51"><a class="md-toc-inner" href="#display-image-data">Display Image Data</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n53"><a class="md-toc-inner" href="#financial-charts">Financial Charts</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n54"><a class="md-toc-inner" href="#time-series-and-date-axes">Time Series and Date Axes</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n55"><a class="md-toc-inner" href="#candlestick-charts">Candlestick Charts</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n57"><a class="md-toc-inner" href="#maps">Maps</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n59"><a class="md-toc-inner" href="#filled-area-in-mapbox">Filled Area in Mapbox</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n60"><a class="md-toc-inner" href="#3d-charts">3D Charts</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n62"><a class="md-toc-inner" href="#3d-scatter-line-mesh-cone">3D Scatter, Line, Mesh, Cone</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n63"><a class="md-toc-inner" href="#3d-surface">3D Surface</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n64"><a class="md-toc-inner" href="#3d-tri-surf-plots">3D Tri-Surf Plots</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n66"><a class="md-toc-inner" href="#subplots">Subplots</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n67"><a class="md-toc-inner" href="#2d-basic-subplots">2D Basic Subplots</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n70"><a class="md-toc-inner" href="#inset-plots">Inset Plots</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n71"><a class="md-toc-inner" href="#map-subplots">Map Subplots</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n72"><a class="md-toc-inner" href="#3d-subplots">3D Subplots</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n73"><a class="md-toc-inner" href="#mixed-subplots">Mixed Subplots</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n74"><a class="md-toc-inner" href="#transforms">Transforms</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n75"><a class="md-toc-inner" href="#filter">Filter</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n76"><a class="md-toc-inner" href="#group-by">Group By</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n77"><a class="md-toc-inner" href="#aggregations">Aggregations</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n78"><a class="md-toc-inner" href="#控件">控件</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n79"><a class="md-toc-inner" href="#buttons">Buttons</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n80"><a class="md-toc-inner" href="#dropdown-events">Dropdown Events</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n81"><a class="md-toc-inner" href="#range-sliders-and-selectors">Range Sliders and Selectors</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n82"><a class="md-toc-inner" href="#sliders">Sliders</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n83"><a class="md-toc-inner" href="#animations">Animations</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n100"><a class="md-toc-inner" href="#basic-and-cumulative-animations">Basic and Cumulative Animations</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n108"><a class="md-toc-inner" href="#参数">参数</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n110"><a class="md-toc-inner" href="#plotly-2">plot_ly()</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n112"><a class="md-toc-inner" href="#addtrace">add_trace()</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n194"><a class="md-toc-inner" href="#layout">layout()</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n195"><a class="md-toc-inner" href="#title">title</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n213"><a class="md-toc-inner" href="#legend">legend</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n222"><a class="md-toc-inner" href="#margins">margins</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n224"><a class="md-toc-inner" href="#colors">colors</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n232"><a class="md-toc-inner" href="#dragmode">dragmode</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n234"><a class="md-toc-inner" href="#xaxis-yaxis">xaxis, yaxis</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n294"><a class="md-toc-inner" href="#shapes">shapes</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n299"><a class="md-toc-inner" href="#images">images</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n302"><a class="md-toc-inner" href="#config">config()</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n314"><a class="md-toc-inner" href="#保存与嵌入">保存与嵌入</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n315"><a class="md-toc-inner" href="#保存为静态文件">保存为静态文件</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n331"><a class="md-toc-inner" href="#保存为html并嵌入网页">保存为.html并嵌入网页</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n333"><a class="md-toc-inner" href="#保存为独立的-html">保存为独立的 .html</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n336"><a class="md-toc-inner" href="#保存为-html-及其依赖文件">保存为 .html 及其依赖文件</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n340"><a class="md-toc-inner" href="#嵌入网页">嵌入网页</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n345"><a class="md-toc-inner" href="#turn-ggplot2-to-plotly">Turn ggplot2 to plotly</a></span></p></div><h1 id='plotly-1'><span>Plotly</span></h1><p><span>安装：</span><a href='https://plotly.com/r/getting-started/' target='_blank' class='url'>https://plotly.com/r/getting-started/</a></p><p><span>官网：</span><a href='https://plotly.com/r/' target='_blank' class='url'>https://plotly.com/r/</a><span> （每一项都可以点开 “more …”）</span></p><p><span>基本部件：</span><a href='https://plotly.com/r/plotly-fundamentals/' target='_blank' class='url'>https://plotly.com/r/plotly-fundamentals/</a></p><p><span>参数查询：</span><a href='https://plotly.com/r/reference/' target='_blank' class='url'>https://plotly.com/r/reference/</a></p><h2 id='grammar'><span>Grammar</span></h2><p><span>在母函数</span><code>plot_ly()</code><span>中，最好只定义数据(如果图形元素并非来自同一个数据框，那就连数据都不需要定义)、映射、准备被继承的公共元素属性、layout 和 config，</span><strong><span>千万不要给出 type 和 mode，否则会自动出现一个 trace0</span></strong><span>.</span></p><p><span>而后在添加具体图层的函数中表明 type 和 mode，如</span><code>add_trace()</code><span>, </span><code>add_markers</code><span>, </span><code>add_lines()</code><span>, </span><code>add_text()</code><span>, </span><code>add_annotations()</code></p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="R"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="r"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 11.599px; left: 41px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 37px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -37px; width: 37px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -37px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 29px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">p0</span> <span class="cm-operator cm-arrow">&lt;-</span> <span class="cm-variable">plot_ly</span>() <span class="cm-operator cm-variable-2">%&gt;%</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -37px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 29px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">layout</span>(</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -37px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 29px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">xaxis</span> <span class="cm-arg-is">=</span> <span class="cm-builtin">list</span>(<span class="cm-variable">title</span> <span class="cm-operator">=</span> <span class="cm-variable">xtitle</span>),</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -37px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 29px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">yaxis</span> <span class="cm-arg-is">=</span> <span class="cm-builtin">list</span>(<span class="cm-variable">title</span> <span class="cm-operator">=</span> <span class="cm-variable">ytitle</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -37px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 29px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  ) <span class="cm-operator cm-variable-2">%&gt;%</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -37px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 29px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">config</span>(<span class="cm-variable">mathjax</span> <span class="cm-operator">=</span> <span class="cm-string">"cdn"</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -37px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 29px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -37px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 29px;">8</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">p</span> <span class="cm-operator cm-arrow">&lt;-</span> <span class="cm-variable">p0</span> <span class="cm-operator cm-variable-2">%&gt;%</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -37px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 29px;">9</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">add_markers</span>(</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -37px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 29px;">10</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">x</span> <span class="cm-arg-is">=</span> <span class="cm-variable">c</span>(<span class="cm-number">1</span>, <span class="cm-number">2</span>, <span class="cm-number">3</span>, <span class="cm-number">4</span>),</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -37px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 29px;">11</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">y</span> <span class="cm-arg-is">=</span> <span class="cm-variable">c</span>(<span class="cm-number">1</span>, <span class="cm-number">4</span>, <span class="cm-number">9</span>, <span class="cm-number">16</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -37px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 29px;">12</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  )</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 326px;"></div><div class="CodeMirror-gutters" style="height: 326px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 37px;"></div></div></div></div></pre><p>&nbsp;</p><h4 id='updating-figures'><span>Updating figures</span></h4><p><span>demo: </span><a href='https://plotly.com/r/creating-and-updating-figures/' target='_blank' class='url'>https://plotly.com/r/creating-and-updating-figures/</a></p><ul><li><code>add_trace()</code><span>及其变体添加数据</span></li><li><code>style(p, marker=…, traces=...)</code><span> 更新图中部分 trace 的样式</span></li><li><code>images()</code><span>,</span><a href='https://plotly.com/r/displaying-images/'><span>update background layout images</span></a></li><li><code>annotations()</code><span>, </span><a href='https://plotly.com/r/text-and-annotations/'><span>update annotations</span></a></li><li><code>shapes()</code><span>, </span><a href='https://plotly.com/r/shapes/'><span>update shapes</span></a></li></ul><p><span>但它们都不能更新 trace 中的数据，只有 Plotly.js 提供的 </span><code>Plotly.animate(p, trace, ...)</code><span> 可以做到并自动插入中间帧</span></p><h4 id='export-plotly-figure'><span>export plotly figure</span></h4><p><a href='./src/export.html'><span>export.Rmd</span></a></p><p><span>将 plotly 生成的图保存为外部文件</span></p><h4 id='latex-in-plotly'><span>LaTeX in plotly</span></h4><p><a href='./src/LaTeX-in-plotly.html'><img src='./figure/LaTeX-in-plotly.svg'></a></p><p><span>含有 </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="6.293ex" height="2.108ex" role="img" focusable="false" viewBox="0 -716.3 2781.3 931.8" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.488ex;"><defs><path id="MJX-2-TEX-I-1D43F" d="M228 637Q194 637 192 641Q191 643 191 649Q191 673 202 682Q204 683 217 683Q271 680 344 680Q485 680 506 683H518Q524 677 524 674T522 656Q517 641 513 637H475Q406 636 394 628Q387 624 380 600T313 336Q297 271 279 198T252 88L243 52Q243 48 252 48T311 46H328Q360 46 379 47T428 54T478 72T522 106T564 161Q580 191 594 228T611 270Q616 273 628 273H641Q647 264 647 262T627 203T583 83T557 9Q555 4 553 3T537 0T494 -1Q483 -1 418 -1T294 0H116Q32 0 32 10Q32 17 34 24Q39 43 44 45Q48 46 59 46H65Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Q285 635 228 637Z"></path><path id="MJX-2-TEX-I-1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path><path id="MJX-2-TEX-I-1D447" d="M40 437Q21 437 21 445Q21 450 37 501T71 602L88 651Q93 669 101 677H569H659Q691 677 697 676T704 667Q704 661 687 553T668 444Q668 437 649 437Q640 437 637 437T631 442L629 445Q629 451 635 490T641 551Q641 586 628 604T573 629Q568 630 515 631Q469 631 457 630T439 622Q438 621 368 343T298 60Q298 48 386 46Q418 46 427 45T436 36Q436 31 433 22Q429 4 424 1L422 0Q419 0 415 0Q410 0 363 1T228 2Q99 2 64 0H49Q43 6 43 9T45 27Q49 40 55 46H83H94Q174 46 189 55Q190 56 191 56Q196 59 201 76T241 233Q258 301 269 344Q339 619 339 625Q339 630 310 630H279Q212 630 191 624Q146 614 121 583T67 467Q60 445 57 441T43 437H40Z"></path><path id="MJX-2-TEX-I-1D438" d="M492 213Q472 213 472 226Q472 230 477 250T482 285Q482 316 461 323T364 330H312Q311 328 277 192T243 52Q243 48 254 48T334 46Q428 46 458 48T518 61Q567 77 599 117T670 248Q680 270 683 272Q690 274 698 274Q718 274 718 261Q613 7 608 2Q605 0 322 0H133Q31 0 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H757Q764 676 764 669Q764 664 751 557T737 447Q735 440 717 440H705Q698 445 698 453L701 476Q704 500 704 528Q704 558 697 578T678 609T643 625T596 632T532 634H485Q397 633 392 631Q388 629 386 622Q385 619 355 499T324 377Q347 376 372 376H398Q464 376 489 391T534 472Q538 488 540 490T557 493Q562 493 565 493T570 492T572 491T574 487T577 483L544 351Q511 218 508 216Q505 213 492 213Z"></path><path id="MJX-2-TEX-I-1D44B" d="M42 0H40Q26 0 26 11Q26 15 29 27Q33 41 36 43T55 46Q141 49 190 98Q200 108 306 224T411 342Q302 620 297 625Q288 636 234 637H206Q200 643 200 645T202 664Q206 677 212 683H226Q260 681 347 681Q380 681 408 681T453 682T473 682Q490 682 490 671Q490 670 488 658Q484 643 481 640T465 637Q434 634 411 620L488 426L541 485Q646 598 646 610Q646 628 622 635Q617 635 609 637Q594 637 594 648Q594 650 596 664Q600 677 606 683H618Q619 683 643 683T697 681T738 680Q828 680 837 683H845Q852 676 852 672Q850 647 840 637H824Q790 636 763 628T722 611T698 593L687 584Q687 585 592 480L505 384Q505 383 536 304T601 142T638 56Q648 47 699 46Q734 46 734 37Q734 35 732 23Q728 7 725 4T711 1Q708 1 678 1T589 2Q528 2 496 2T461 1Q444 1 444 10Q444 11 446 25Q448 35 450 39T455 44T464 46T480 47T506 54Q523 62 523 64Q522 64 476 181L429 299Q241 95 236 84Q232 76 232 72Q232 53 261 47Q262 47 267 47T273 46Q276 46 277 46T280 45T283 42T284 35Q284 26 282 19Q279 6 276 4T261 1Q258 1 243 1T201 2T142 2Q64 2 42 0Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D43F" xlink:href="#MJX-2-TEX-I-1D43F"></use></g><g data-mml-node="mspace" transform="translate(681,0)"></g><g data-mml-node="mpadded" transform="translate(356,0)"><g transform="translate(0,210)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mstyle" transform="scale(0.707)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D434" xlink:href="#MJX-2-TEX-I-1D434"></use></g></g></g></g></g></g><g data-mml-node="mspace" transform="translate(886.3,0)"></g><g data-mml-node="mi" transform="translate(716.3,0)"><use data-c="1D447" xlink:href="#MJX-2-TEX-I-1D447"></use></g><g data-mml-node="mspace" transform="translate(1420.3,0)"></g><g data-mml-node="mpadded" transform="translate(1280.3,0)"><g transform="translate(0,-215.5)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D438" xlink:href="#MJX-2-TEX-I-1D438"></use></g></g></g></g><g data-mml-node="mspace" transform="translate(2044.3,0)"></g><g data-mml-node="mi" transform="translate(1929.3,0)"><use data-c="1D44B" xlink:href="#MJX-2-TEX-I-1D44B"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>L</mi><mspace width="-.325em"></mspace><mpadded height="+.21em" depth="-.21em" voffset="+.21em"><mrow data-mjx-texclass="ORD"><mstyle displaystyle="false" scriptlevel="1"><mrow data-mjx-texclass="ORD"><mi>A</mi></mrow></mstyle></mrow></mpadded><mspace width="-.17em"></mspace><mi>T</mi><mspace width="-.14em"></mspace><mpadded height="-.5ex" depth="+.5ex" voffset="-.5ex"><mrow data-mjx-texclass="ORD"><mi>E</mi></mrow></mpadded><mspace width="-.115em"></mspace><mi>X</mi></math></mjx-assistive-mml></mjx-container><script type="math/tex">\LaTeX</script><span> 的图，若保存时</span><code>selfcontained=FALSE</code><span>，则只有在（网络或本地）服务器上，主文件才能访问所需的依赖文件（mathjax），从而正确显示公式。</span></p><h2 id='gallery'><span>Gallery</span></h2><h3 id='basic-charts'><span>Basic Charts</span></h3><h4 id='bar-charts'><a href='./src/bar-chart.html'><span>Bar Charts</span></a></h4><p><a href='./src/bar-chart.html'><img src='./figure/bar-chart.svg'></a></p><h4 id='pie-charts'><span>Pie Charts</span></h4><h4 id='sunburst-charts'><span>Sunburst Charts</span></h4><p><span>点击可折叠</span></p><h4 id='tables'><span>Tables</span></h4><p><a href='./src/table.html'><img src='./figure/table.svg'></a></p><p><span>可拖动列</span></p><p><span>可以结合 Subplots，做成 Table with Chart，解决排版问题</span></p><h4 id='treemap-charts'><span>Treemap Charts</span></h4><h3 id='statistical-charts'><span>Statistical Charts</span></h3><h4 id='regression'><span>Regression</span></h4><p><a href='./src/regression.html'><img src='./figure/regression.svg'></a></p><p><span>more demo: </span><a href='https://plotly.com/r/ml-regression/' target='_blank' class='url'>https://plotly.com/r/ml-regression/</a></p><h3 id='scientific-charts'><span>Scientific Charts</span></h3><h4 id='log-plots'><span>Log Plots</span></h4><h4 id='contour-plots'><span>Contour Plots</span></h4><p><span>等值线图</span></p><h4 id='heatmaps'><span>Heatmaps</span></h4><h4 id='network-graph'><span>Network Graph</span></h4><h4 id='carpet-plot'><span>Carpet Plot</span></h4><h4 id='polar-charts'><span>Polar Charts</span></h4><h4 id='display-image-data'><span>Display Image Data</span></h4><p><span>more demo: </span><a href='https://plotly.com/r/displaying-images/' target='_blank' class='url'>https://plotly.com/r/displaying-images/</a></p><h3 id='financial-charts'><span>Financial Charts</span></h3><h4 id='time-series-and-date-axes'><span>Time Series and Date Axes</span></h4><h4 id='candlestick-charts'><span>Candlestick Charts</span></h4><p><span>K 线图</span></p><h3 id='maps'><span>Maps</span></h3><p><span>考虑上 D3.js</span></p><h4 id='filled-area-in-mapbox'><span>Filled Area in Mapbox</span></h4><h3 id='3d-charts'><span>3D Charts</span></h3><p><span>相机设置 </span><a href='https://plotly.com/python/3d-camera-controls/' target='_blank' class='url'>https://plotly.com/python/3d-camera-controls/</a></p><h4 id='3d-scatter-line-mesh-cone'><span>3D Scatter, Line, Mesh, Cone</span></h4><h4 id='3d-surface'><span>3D Surface</span></h4><h4 id='3d-tri-surf-plots'><span>3D Tri-Surf Plots</span></h4><p><span>三维模型的表面上色问题</span></p><h3 id='subplots'><span>Subplots</span></h3><h4 id='2d-basic-subplots'><span>2D Basic Subplots</span></h4><p><span>more demo: </span><a href='https://plotly.com/r/subplots/' target='_blank' class='url'>https://plotly.com/r/subplots/</a></p><p><span>多张图任意拼在一张图上，涉及共享坐标轴、图例等问题</span></p><h4 id='inset-plots'><span>Inset Plots</span></h4><h4 id='map-subplots'><span>Map Subplots</span></h4><h4 id='3d-subplots'><span>3D Subplots</span></h4><h4 id='mixed-subplots'><span>Mixed Subplots</span></h4><h3 id='transforms'><span>Transforms</span></h3><h4 id='filter'><span>Filter</span></h4><h4 id='group-by'><span>Group By</span></h4><h4 id='aggregations'><span>Aggregations</span></h4><h3 id='控件'><span>控件</span></h3><h4 id='buttons'><span>Buttons</span></h4><h4 id='dropdown-events'><span>Dropdown Events</span></h4><h4 id='range-sliders-and-selectors'><span>Range Sliders and Selectors</span></h4><h4 id='sliders'><span>Sliders</span></h4><h3 id='animations'><span>Animations</span></h3><p><span>制作动画有两种思路：</span></p><ol start='' ><li><p><span>为数据框单独设置一个时间轴变量，每帧只显示部分数据，这是</span><code>R plotly</code><span>使用的方式。这造成数据量非常大，而且必须提前计算好，使用起来不够灵活——但也不是不能做。</span></p><ol start='' ><li><span>比如平面上一个旋转过程，必须给出所有中间角度的变换矩阵，计算出过程中每一帧的坐标，组成一个大数据框，并将 frame 映射为时间。</span></li></ol></li><li><p><span>间隔一定时间，实时更新数据，这是</span><code>plotly.js</code><span>使用的方式。制作动画，还是</span><code>plotly.js</code><span>或</span><code>d3.js</code><span>效果更好一些，更值得深入研究。</span></p><ol start='' ><li><span>动画属性文档: </span><a href='https://github.com/plotly/plotly.js/blob/master/src/plots/animation_attributes.js' target='_blank' class='url'>https://github.com/plotly/plotly.js/blob/master/src/plots/animation_attributes.js</a></li><li><span>button 属性文档: </span><a href='https://github.com/plotly/plotly.js/blob/master/src/components/updatemenus/attributes.js' target='_blank' class='url'>https://github.com/plotly/plotly.js/blob/master/src/components/updatemenus/attributes.js</a></li><li><span>slider 属性文档: </span><a href='https://github.com/plotly/plotly.js/blob/master/src/components/sliders/attributes.js' target='_blank' class='url'>https://github.com/plotly/plotly.js/blob/master/src/components/sliders/attributes.js</a></li></ol></li></ol><h4 id='basic-and-cumulative-animations'><span>Basic and Cumulative Animations</span></h4><p><a href='./src/animation.html'><img src='./figure/animation/gapminder.svg'></a></p><p>&nbsp;</p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="R"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="r"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 11.599px; left: 31px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 27px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>8</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -27px; width: 27px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">plotly</span><span class="cm-operator">::</span><span class="cm-variable">animation_opts</span>(</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 19px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">p</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 19px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">frame</span> <span class="cm-arg-is">=</span> <span class="cm-number">500</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 19px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">transition</span> <span class="cm-arg-is">=</span> <span class="cm-variable">frame</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 19px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">easing</span> <span class="cm-arg-is">=</span> <span class="cm-string">"linear"</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 19px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">redraw</span> <span class="cm-arg-is">=</span> <span class="cm-variable">TRUE</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 19px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">mode</span> <span class="cm-arg-is">=</span> <span class="cm-string">"immediate"</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">8</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">)</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 218px;"></div><div class="CodeMirror-gutters" style="height: 218px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 27px;"></div></div></div></div></pre><p><code>animation_opts()</code><span>设置动画属性，</span><code>frame</code><span>设置两帧之间的时间（毫秒），</span><code>transition</code><span>设置平滑动画的时间，</span><code>easing</code><span>设置插值的方式，</span></p><p><code>animation_slider()</code><span>设置时间轴，</span><code>hide = FALSE</code><span>可以将其隐藏</span></p><p><code>animation_button()</code><span>设置开启动画的按钮，</span><code>label</code><span>属性可设置其上的文字</span></p><p>&nbsp;</p><h2 id='参数'><span>参数</span></h2><p><a href='https://www.jianshu.com/p/4f4daf47cc85'><span>可视化神器Plotly(5)---参数详解 - 简书 (jianshu.com)</span></a></p><h3 id='plotly-2'><span>plot_ly()</span></h3><p><span>width, height: 设置图形尺寸</span></p><h3 id='addtrace'><span>add_trace()</span></h3><ul><li><span>connectgaps：布尔变量，用于连接缺失数据；</span></li><li><span>dx、dy：x、y坐标轴的步进值，默认值是1；</span></li><li><span>error_x、error_y：x、y出错信息；</span></li><li><span>fillcolor：填充指定区域的颜色；</span></li><li><span>fill：设置要填充纯色的区域，默认为none(不填充)，其它设置项如下：</span></li></ul><ol start='' ><li><strong><span>tozerox</span></strong><span> 和 </span><strong><span>tozeroy</span></strong><span> 分别表示填充曲线到x=0和y=0的区域；</span></li><li><strong><span>tonextx</span></strong><span> 和 </span><strong><span>tonexty</span></strong><span> 分别表示填充曲线到x和y方向上的前一条曲线之间的区域，如果前面没有曲线，则效果同</span><strong><span>tozerox</span></strong><span> 和 </span><strong><span>tozeroy</span></strong><span>；</span></li><li><strong><span>toself</span></strong><span> 表示将曲线的各端点连接成闭合的形状；</span></li><li><strong><span>tonext</span></strong><span> 表示将2条曲线各端点均连接成闭合的形状，前提是一条曲线包围另一条曲线；</span></li></ol><ul><li><span>hoverinfo：当用户与图表交互时，鼠标指针显示的参数，包括：x、y</span>
+<span>z (坐标轴数据)、text(文字信息)、name(图形名称)等参数的组合，可以使用 </span><strong><span>+</span></strong><span>、all、none 和 skip作为组合连接符，默认是all(全部消失)；</span></li><li><span>hoveron：当用户与图表交互时，鼠标指针显示的模式，共有3种模式：points(点图)、fill(填充图)、points+fill(点图+填充图)；</span></li><li><span>ids：在动画图表中，数据点和图形key键的列表参数；</span></li><li><span>legendgroup：图例参数，默认是空字符串；</span></li><li><span>line：线条参数，包括线条宽度、颜色、格式等，有如下设置项：</span></li></ul><ol start='' ><li><span>color：元组，元素为字符串颜色序列，设置对应图表节点的颜色；</span></li><li><span>width：数值，设置线条宽度；</span></li><li><span>dash：线条格式，包括：dash(虚短线)、dot(虚点)、dashdot(短线和点)；</span></li><li><span>shape：进行数据点的插值设置，即根据已有的零散数据点，找到一条满足一定条件的曲线，使之经过全部的数据点。共有6种插值方式：&#39;linear&#39;、&#39;spline&#39;、&#39;hv&#39;、&#39;vh&#39;、&#39;hvh&#39;和&#39;vhv。</span></li></ol><ul><li><span>marker：数据节点参数，包括大小、颜色、格式等，有如下设置项：</span></li></ul><ol start='' ><li><span>size：列表，元素为相应节点的尺寸大小；</span></li><li><span>sizeref：缩放的比例，如设置为2，则缩小为原来的1/2；</span></li><li><span>sizemode：缩放的标准，默认以</span><strong><span>diameter</span></strong><span>(直径)缩放，也可选择以</span><strong><span>area</span></strong><span>(面积)缩放；</span></li></ol><ul><li><span>mode：图形格式，包括lines(线形图)、markers(散点图)、text(文本)。使用 </span><strong><span>+</span></strong><span> 或 none 等符号进行模式组合；</span></li><li><span>name：名称参数；</span></li><li><span>opacity：透明度参数，取值范围0～1，表示相应节点的透明度；</span></li><li><span>rsrc、xsrc、ysrc、tsrc、idssrc、textsrc、textpositionsrc：字符串源数组列表，作为Plotly网格标识符，用于设置特殊图表所需的r参数、x参数、y参数、t参数、ids参数、text(文本)参数、textposition(文本位置)参数等；</span></li><li><span>r、t：仅用于极坐标图，r用于设置径向坐标(半径)；t用于设置角坐标；</span></li><li><span>showlegend：布尔变量，默认True，设置显示图例名称。仅一条数据时，需要显式地声明才会显示图例；</span></li><li><span>showscale：布尔变量，设置是否显示颜色跟踪条，默认为False；</span></li><li><span>stream：数据流，用于实时显示数据图表；</span></li><li><span>textfont：文本字体参数，包括字体名称、颜色、大小等；</span></li><li><span>textposition：“文本”元素的位置参数，包括：top left(左上)、top center(中上)、top right(右上)、middle  left(左中)、middle center(中心)、middle   right(右中)、bottom left(左下)、bottom center(中下)、bottom right(右下)模式，默认是middle center(中心)模式；</span></li><li><span>text：文本数据，元素为相应节点的悬浮文字内容；</span></li><li><span>type：数据显示模式，包括：constant(常数)、percent(百分比)、sqrt(平方根)、array(数组)模式；</span></li><li><span>x0、y0：坐标轴起点坐标；</span></li><li><span>xcalendar、ycalendar：坐标时间参数的格式，默认是公历；</span></li><li><span>x，y：设置x、y轴的坐标数据；</span></li></ul><h3 id='layout'><span>layout()</span></h3><h4 id='title'><span>title</span></h4><p><span>设置图表的标题，如下配置项</span></p><ol start='' ><li><p><span>text：字符串，标题内容；</span></p><ol start='' ><li><span>设置标题的标准写法是</span><code>title = list(text = &quot;...&quot;)</code><span>，</span><strong><span>若写为</span><code>title = &quot;...&quot;</code><span>，则会将之前设置的标题其他属性覆盖为默认值</span></strong><span>！ </span></li></ol></li><li><p><span>font：设置标题字体。包含：字体、颜色、大小等；</span></p></li><li><p><span>x、y：取值0～1之间，设置在标准化坐标中位置，0.5为居中；</span></p></li><li><p><span>xanchor：设置标题相对于x位置的水平对齐方式，有如下取值：&quot;auto&quot; | &quot;left&quot; | &quot;center&quot; | &quot;right&quot; ；</span></p></li><li><p><span>yanchor：设置标题相对于y位置的垂直对齐方式，有如下取值：&quot;auto&quot; | &quot;top&quot; | &quot;middle&quot; | &quot;bottom&quot; ；</span></p></li><li><p><span>pad：设置标题的填充。</span></p></li></ol><h4 id='legend'><span>legend</span></h4><p><span>设置图例的字体、颜色、位置等，包括如下设置项：</span></p><ol start='' ><li><span>x, y, xanchor, yanchor: 图例在坐标系内的位置</span></li><li><span>bordercolor：设置图例外边框颜色；</span></li><li><span>borderwidth：设置图例外边框的线条宽度；</span></li></ol><h4 id='margins'><span>margins</span></h4><p><span>设置 图表的页面边距。1) 主要的4个参数：1、r、t、b，分别对应：左右上下，除了上(t)默认值为100，其它默认值均为80；2) pad：设置绘图区域和轴线之间的填充量，默认值为0；3) autoexpand：布尔型，表示是否默认自动；</span></p><h4 id='colors'><span>colors</span></h4><ul><li><span>paper_bgcolor, 背景颜色。默认值：&quot;#fff&quot; ；</span></li><li><span>plot_bgcolor, 设置x轴和y轴之间的绘图区域的颜色。默认值：&quot;#fff&quot; ；</span></li><li><span>colorway, 给 traces 赋颜色向量</span></li></ul><h4 id='dragmode'><span>dragmode</span></h4><p><span>设置拖动交互的模式，默认为&quot;zoom&quot; ，包括： &quot;zoom&quot; | &quot;pan&quot; | &quot;select&quot; | &quot;lasso&quot; | &quot;orbit&quot; | &quot;turntable&quot; | False。“select”和“lasso”仅适用于使用标记或文本散布痕迹。“轨道”和“转盘”仅适用于3D场景；</span></p><h4 id='xaxis-yaxis'><span>xaxis, yaxis</span></h4><p><a href='https://plotly.com/r/axes/' target='_blank' class='url'>https://plotly.com/r/axes/</a></p><p><a href='https://plotly.com/r/multiple-axes/' target='_blank' class='url'>https://plotly.com/r/multiple-axes/</a></p><p><span>设置x、y 坐标轴参数，包括如下设置项：</span></p><ol start='' ><li><p><span>title：设置坐标轴的标题，包括标题内容、字体、颜色、大小等；</span></p><ol start='' ><li><span>设置坐标轴标题的标准写法是</span><code>xaxis = list(title = list(text = &quot;...&quot;))</code><span>，</span><strong><span>若写为</span><code>xaxis = list(title = &quot;...&quot;)</code><span>，则会将之前设置的坐标轴其他属性覆盖为默认值</span></strong><span>！ </span></li></ol></li><li><p><span>tickformat：设置刻度线标签格式，如：</span><strong><span>&#39;,&#39;</span></strong><span> 可以显示千分位标示；</span><strong><span>&#39;YYYY-MM-DD&#39;</span></strong><span>可以将日期格式化为类似 </span><strong><span>2019-01-01</span></strong><span>；</span></p></li><li><p><span>ticksuffix：设置刻度标签后缀字符串；</span></p></li><li><p><span>tickprefix：设置刻度标签前缀字符串；</span></p></li><li><p><span>type：设置轴类型。默认情况下(&#39;-&#39;)，通过查看引用相关轴的迹线数据，尝试确定轴类型，有如下取值：&quot;-&quot; | &quot;linear&quot; | &quot;log&quot; | &quot;date&quot; | &quot;category&quot; | &quot;multicategory&quot;</span></p></li><li><p><span>showline：布尔值，确定是否显示坐标轴直线；</span></p></li><li><p><span>zeroline : 布尔值，确定是否在该轴的0值处绘制垂直的直线；</span></p></li><li><p><span>linecolor：坐标轴线的颜色；</span></p></li><li><p><span>linewidth：坐标轴线的宽度；</span></p></li><li><p><span>range：列表，设置坐标轴的取值范围；</span></p></li><li><p><span>overlaying：设置相同的坐标轴id(双坐标)；</span></p></li><li><p><span>rangemode：根据输入数据的极值计算范围。默认为&quot;normal&quot;，取值为“tozero”`，则范围扩展为0，无论输入数据是否为“非负”，无论输入数据如何，范围都是非负的。目前笔者用到过的场景：双Y坐标轴时，实现Y轴的0刻度线对齐；</span></p></li><li><p><span>side：设置坐标轴在绘图区域的位置，共4个取值：top、bottom(默认)、left、right；</span></p></li><li><p><span>autotick：布尔变量，是否删除部分日期，False为保持原状；</span></p></li><li><p><span>ticks：是否绘制刻度线，包括：outside(外部)、inside(内部)，默认为空(&#39; &#39;)，不显示刻度线；</span></p></li><li><p><span>ticklen：设置刻度线长度，默认为5；</span></p></li><li><p><span>tickwidth：设置刻度线宽度，默认为1；</span></p></li><li><p><span>tickcolor：设置刻度线颜色，默认值：&quot;#444&quot; ；</span></p></li><li><p><span>tickfont：设置刻度线标签字体，包括字体、颜色、大小；</span></p></li><li><p><span>nticks：设置坐标轴的最大刻度个数；</span></p></li><li><p><span>showticklabels：布尔变量，默认为True，确定是否绘制刻度标签；</span></p></li><li><p><span>showgrid：布尔值，确定是否绘制网格线。如果为“True”，则在每个刻度线处绘制网格线；</span></p></li><li><p><span>gridcolor：设置网格线的颜色；</span></p></li><li><p><span>gridwidth：设置网格线的宽度；</span></p></li><li><p><span>rangeslider：设置滑动条，有如下设置项：</span>
+<span>1）bgcolor：设置滑动条的背景颜色，默认值：&quot;#fff&quot; ；</span>
+<span>2）bordercolor：设置滑动条的边框颜色，默认值：&quot;#444&quot; ；</span>
+<span>3）borderwidth：设置滑动条的边框宽度，默认无；</span>
+<span>4）autorange：布尔值，设置是否根据输入数据计算滑动条的范围。如果提供 </span><code>range</code><span>，则 </span><code>autorange</code><span>设置为“False”；</span>
+<span>5）range：列表，设置滑动条的范围。如果未设置，则默认为完整的x轴范围。如果轴 </span><code>type</code><span>是“log”，则必须设置范围；如果轴 </span><code>type</code><span>是“date”，则它应该是日期字符串或日期数据，Plotly对时间序列的支持比较友好，既支持字符串格式，又支持日期/时间格式；如果轴“type”是“ category”，它应该是数字或比例，其中每个类别按其出现的顺序从零开始分配序列号；</span>
+<span>6）thickness：设置滑动条的高度，作为总绘图区域高度的一部分，默认值：0.15 ；</span>
+<span>7）visible：布尔值，默认为True，设置滑动条是否可见；</span>
+<span>8）y：设置滑动条的轴范围是否与主图中的值相同；</span></p></li><li><p><span>rangeslider：设置范围选择按钮，有如下设置项：</span>
+<span>1）visible：设置范围选择按钮是否可见。特别说明：范围选择按钮仅适用于数据为date或设置“type”为“date”的x轴；</span>
+<span>2）buttons：设置按钮，有如下设置项：</span>
+<code>a、</code><span> visible：布尔值，设置此按钮是否可见，默认为True；</span>
+<code>b、</code><span> step：设置按钮的时间单位，默认为&quot;month&quot; ，包括如下取值：&quot;month&quot; | &quot;year&quot; | &quot;day&quot; | &quot;hour&quot; | &quot;minute&quot; | &quot;second&quot; | &quot;all&quot; ；</span>
+<code>c、</code><span> count：数值，默认为1，用于设置按钮时间单位的数量，与 </span><code>step</code><span>一起使用，指定该按钮的时间筛选范围；</span>
+<code>d、</code><span> stepmode：设置时间范围的更新模式，默认为&quot;backward&quot;，按则开始位置为“计数”乘以“步”，若设置为&quot;todate&quot; ，则开始位置返回当年的开始日期；</span>
+<code>e、</code><span> label：设置按钮上显示的文本内容；</span>
+<span>3）x、y：取值0～1之间，设置在标准化坐标中位置，0.5为居中；</span>
+<span>4）xanchor：设置标题相对于x位置的水平对齐方式，有如下取值：&quot;auto&quot; | &quot;left&quot; | &quot;center&quot; | &quot;right&quot; ；</span>
+<span>5）yanchor：设置标题相对于y位置的垂直对齐方式，有如下取值：&quot;auto&quot; | &quot;top&quot; | &quot;middle&quot; | &quot;bottom&quot; ；</span>
+<span>6）font：设置标题字体。包含：字体、颜色、大小等；</span>
+<span>7）bgcolor：设置范围选择按钮的背景颜色，默认值：&quot;#eee&quot; ；</span>
+<span>8）bordercolor：设置范围选择按钮的边框颜色，默认值：&quot;#444&quot; ；</span>
+<span>9）borderwidth：设置范围选择按钮的边框宽度，默认无；</span></p></li></ol><h4 id='shapes'><span>shapes</span></h4><p><a href='https://plotly.com/r/shapes/' target='_blank' class='url'>https://plotly.com/r/shapes/</a></p><p><a href='https://plotly.com/r/reference/#layout-shapes' target='_blank' class='url'>https://plotly.com/r/reference/#layout-shapes</a></p><p><span>在图的任意位置加入作为标注的几何图形，包括 rect, circle, line, path 等</span></p><p><span>还可以用</span><code>hline()</code><span>, </span><code>vline()</code><span>加入垂直和水平参考线</span></p><h4 id='images'><span>images</span></h4><p><a href='https://plotly.com/r/images/' target='_blank' class='url'>https://plotly.com/r/images/</a></p><p><span>背景图片或logo</span></p><h3 id='config'><span>config()</span></h3><p><a href='https://plotly.com/r/configuration-options/' target='_blank' class='url'>https://plotly.com/r/configuration-options/</a></p><p><span>scrollZoom, 是否可滚动缩放</span></p><p><span>responsive, 是否自动响应设备尺寸</span></p><p><span>staticPlot, 是否自动显示静态图片</span></p><p><span>displayModeBar, 是否一直显示/永不显示交互栏</span></p><p><span>displaylogo, 是否在交互栏上显示 plotly 的 logo</span></p><p><span>toImageButtonOptions, 对下载静态图片进行设置</span></p><p><span>locale, 设置本地（语言、日期等）格式</span></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2 id='保存与嵌入'><span>保存与嵌入</span></h2><h3 id='保存为静态文件'><span>保存为静态文件</span></h3><p><span>首先要安装依赖的 python 库 kaleido，以下为安装方法：</span></p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="R"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="r"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 11.599px; left: 31px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 27px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>5</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -27px; width: 27px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">install.packages</span>(<span class="cm-string">'reticulate'</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 19px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">reticulate</span><span class="cm-operator">::</span><span class="cm-variable">install_miniconda</span>()</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 19px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">reticulate</span><span class="cm-operator">::</span><span class="cm-variable">conda_install</span>(<span class="cm-string">'r-reticulate'</span>, <span class="cm-string">'python-kaleido'</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 19px;">4</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">reticulate</span><span class="cm-operator">::</span><span class="cm-variable">conda_install</span>(<span class="cm-string">'r-reticulate'</span>, <span class="cm-string">'plotly'</span>, <span class="cm-variable">channel</span> <span class="cm-operator">=</span> <span class="cm-string">'plotly'</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">5</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">reticulate</span><span class="cm-operator">::</span><span class="cm-variable">use_miniconda</span>(<span class="cm-string">'r-reticulate'</span>)</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 136px;"></div><div class="CodeMirror-gutters" style="height: 136px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 27px;"></div></div></div></div></pre><p><span>安装完毕后调用</span><code>reticulate::py_config()</code><span>检查python的路径是否为刚刚安装的 r-miniconda 版本。</span></p><blockquote><p><span>两个路径的对比：</span></p><p><span>C:/Users/Humoonruc/AppData/Local/r-miniconda/envs/r-reticulate/python.exe</span></p><p><span>C:/Users/Humoonruc/AppData/Local/Programs/Python/Python310/python.exe</span></p></blockquote><p><span>如果不是，就在项目根目录加入一个 .Renviron 文件，里面写入一行</span></p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 11.599px; left: 31px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 27px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>1</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -27px; width: 27px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">RETICULATE_PYTHON="C:/Users/.../AppData/Local/r-miniconda/envs/r-reticulate/python.exe"</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 27px;"></div><div class="CodeMirror-gutters" style="height: 27px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 27px;"></div></div></div></div></pre><p><span>重启 Rstudio，在 Options 中手动修改 Python Interpreter 的路径。</span></p><p><img src="img/image-20220324125205045.png" alt="image-20220324125205045" style="zoom: 67%;" /></p><p><img src="img/image-20220324125318689.png" alt="image-20220324125318689" style="zoom:67%;" /></p><p><span>直到通过</span><code>reticulate::py_config()</code><span>检查，才能调用</span><code>plotly::save_image(p, file, ..., width = NULL, height = NULL, scale = NULL)</code><span>，将 plotly 生成的图保存为静态文件，类型包括 png, jpg, jpeg, webp, svg, pdf</span></p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="R"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="r"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 11.599px; left: 31px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 27px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>3</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -27px; width: 27px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">save_image</span>(<span class="cm-variable">p</span>, <span class="cm-variable">file</span> <span class="cm-operator">=</span> <span class="cm-string">"./figure/export-png.png"</span>, <span class="cm-variable">width</span> <span class="cm-operator">=</span> <span class="cm-number">800</span>, <span class="cm-variable">height</span> <span class="cm-operator">=</span> <span class="cm-number">600</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 19px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">save_image</span>(<span class="cm-variable">p</span>, <span class="cm-variable">file</span> <span class="cm-operator">=</span> <span class="cm-string">"./figure/export-svg.svg"</span>, <span class="cm-variable">width</span> <span class="cm-operator">=</span> <span class="cm-number">600</span>, <span class="cm-variable">height</span> <span class="cm-operator">=</span> <span class="cm-number">600</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">save_image</span>(<span class="cm-variable">p</span>, <span class="cm-variable">file</span> <span class="cm-operator">=</span> <span class="cm-string">"./figure/export-pdf.pdf"</span>)</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 82px;"></div><div class="CodeMirror-gutters" style="height: 82px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 27px;"></div></div></div></div></pre><p><strong><span>注意</span></strong><span>：上述安装和调用</span><code>plotly::save_image()</code><span>都必须在 Rstudio 中进行，在 VSCode 中会由于 python 版本不匹配而无法使用（因为 VSCode 中的 R 解释器 radian 是安装在之前 python 版本之内的）。</span></p><h3 id='保存为html并嵌入网页'><span>保存为.html并嵌入网页</span></h3><p><span>plotly 生成的图其实都是 htmlwidget，用 HTML5 的</span><code>&lt;iframe&gt;&lt;/iframe&gt;</code><span>标签即可直接嵌入到任何网页中，使用起来极其方便。</span></p><h4 id='保存为独立的-html'><span>保存为独立的 .html</span></h4><p><span>这种情况将图形所依赖的各种 css 文件和 js 文件都嵌入到了 html 文件内部，因此 html 的 size 往往会很大，不利于网络传播。好处则是，即使在本地打开，也能完整显示，不存在浏览器拒绝访问本地文件的问题。</span></p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="{r}"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="{r}"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 11.599px; left: 31px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 27px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>2</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -27px; width: 27px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">p</span> <span class="cm-operator cm-arrow">&lt;-</span> <span class="cm-variable">plot_ly</span>(<span class="cm-variable">x</span> <span class="cm-operator">=</span> <span class="cm-number">1</span><span class="cm-operator">:</span><span class="cm-number">10</span>, <span class="cm-variable">y</span> <span class="cm-operator">=</span> <span class="cm-number">1</span><span class="cm-operator">:</span><span class="cm-number">10</span>) <span class="cm-operator cm-variable-2">%&gt;%</span> <span class="cm-variable">add_markers</span>()</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">htmlwidgets</span><span class="cm-operator">::</span><span class="cm-variable">saveWidget</span>(<span class="cm-variable">p</span>, <span class="cm-string">"./figure/self-contain.html"</span>, <span class="cm-variable">selfcontained</span> <span class="cm-operator">=</span> <span class="cm-variable">T</span>)</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 54px;"></div><div class="CodeMirror-gutters" style="height: 54px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 27px;"></div></div></div></div></pre><h4 id='保存为-html-及其依赖文件'><span>保存为 .html 及其依赖文件</span></h4><p><span>分开保存图形和依赖文件，因为</span><strong><span>依赖文件往往都是很多图共用的</span></strong><span>。</span></p><p><span>由于浏览器会阻止本地文件的读取，所以依赖文件比较复杂时，本地打开可能显示不完整，要在 vscode 中通过构建本地服务器来打开。</span></p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="{r}"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="{r}"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 11.599px; left: 31px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 27px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>2</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -27px; width: 27px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">p</span> <span class="cm-operator cm-arrow">&lt;-</span> <span class="cm-variable">plot_ly</span>(<span class="cm-variable">x</span> <span class="cm-operator">=</span> <span class="cm-variable">rnorm</span>(<span class="cm-number">100</span>))</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">htmlwidgets</span><span class="cm-operator">::</span><span class="cm-variable">saveWidget</span>(<span class="cm-variable">p</span>, <span class="cm-string">"./figure/Not-self-contain.html"</span>, <span class="cm-variable">selfcontained</span> <span class="cm-operator">=</span> <span class="cm-variable">F</span>, <span class="cm-variable">libdir</span> <span class="cm-operator">=</span> <span class="cm-string">"lib"</span>) <span class="cm-comment"># 依赖文件夹只写名字即可，其路径会自动跟随html文件，放在同一目录中</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 83px;"></div><div class="CodeMirror-gutters" style="height: 83px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 27px;"></div></div></div></div></pre><h4 id='嵌入网页'><span>嵌入网页</span></h4><p><span>在嵌入页面用 </span><code>&lt;iframe&gt;</code><span> 标签引入即可</span></p><pre class="md-fences md-end-block md-fences-with-lineno ty-contain-cm modeLoaded" spellcheck="false" lang="{html}"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="{html}"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 11.599px; left: 31px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 27px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>1</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -27px; width: 27px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -27px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt CodeMirror-linenumber-show" style="left: 0px; width: 19px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">iframe</span> <span class="cm-attribute">src</span>=<span class="cm-string">"./animation/动态气泡图.html"</span> <span class="cm-attribute">frameborder</span>=<span class="cm-string">"0"</span> <span class="cm-attribute">width</span>=<span class="cm-string">"600px"</span> <span class="cm-attribute">height</span>=<span class="cm-string">"400px"</span><span class="cm-tag cm-bracket">&gt;&lt;/</span><span class="cm-tag">iframe</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 27px;"></div><div class="CodeMirror-gutters" style="height: 27px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 27px;"></div></div></div></div></pre><p><span>注：Rmarkdown 中用</span><code>&lt;iframe&gt;</code><span>语法似乎无效，但直接打印 plotly 图像（</span><code>print(p)</code><span>或直接</span><code>p</code><span>），即可使之出现在最终导出的 html 中。</span></p><p>&nbsp;</p><h2 id='turn-ggplot2-to-plotly'><span>Turn ggplot2 to plotly</span></h2><p><code>ggplotly()</code><span>可以将ggplot2图对象转化为 plotly 图对象，然后使用plotly的API操作</span></p></div></div>
+
+<script>(function(){var e=document.body.parentElement,t=[],n=null,i=document.body.classList.contains("typora-export-collapse-outline"),r=function(e,t,n){document.addEventListener(e,function(e){if(!e.defaultPrevented)for(var i=e.target;i&&i!=this;i=i.parentNode)if(i.matches(t)){!1===n.call(i,e)&&(e.preventDefault(),e.stopPropagation());break}},!1)};function o(){return e.scrollTop}r("click",".outline-expander",function(e){var t=this.closest(".outline-item-wrapper").classList;return t.contains("outline-item-open")?t.remove("outline-item-open"):t.add("outline-item-open"),d(),!1}),r("click",".outline-item",function(e){var t=this.querySelector(".outline-label");if(location.hash="#"+t.getAttribute("href"),i){var n=this.closest(".outline-item-wrapper").classList;n.contains("outline-item-open")||n.add("outline-item-open"),c(),n.add("outline-item-active")}});var a,s,l=function(){var e=o();n=null;for(var i=0;i<t.length&&t[i][1]-e<60;i++)n=t[i]},c=function(){document.querySelectorAll(".outline-item-active").forEach(e=>e.classList.remove("outline-item-active")),document.querySelectorAll(".outline-item-single.outline-item-open").forEach(e=>e.classList.remove("outline-item-open"))},d=function(){if(n){c();var e=document.querySelector('.outline-label[href="#'+(CSS.escape?CSS.escape(n[0]):n[0])+'"]');if(e)if(i){var t=e.closest(".outline-item-open>ul>.outline-item-wrapper");if(t)t.classList.add("outline-item-active");else{for(var r=(e=e.closest(".outline-item-wrapper")).parentElement.closest(".outline-item-wrapper");r;)r=(e=r).parentElement.closest(".outline-item-wrapper");e.classList.add("outline-item-active")}}else e.closest(".outline-item-wrapper").classList.add("outline-item-active")}};window.addEventListener("scroll",function(e){a&&clearTimeout(a),a=setTimeout(function(){l(),d()},300)});var u=function(){s=setTimeout(function(){!function(){t=[];var e=o();document.querySelector("#write").querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(n=>{var i=n.getAttribute("id");t.push([i,e+n.getBoundingClientRect().y])})}(),l(),d()},300)};window.addEventListener("resize",function(e){s&&clearTimeout(s),u()}),u()})();</script></body>
+</html>

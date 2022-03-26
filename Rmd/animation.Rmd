@@ -1,0 +1,218 @@
+---
+title: "Animation"
+subtitle: ''
+author: "Humoon"
+date: "`r Sys.Date()`"
+output: html_document
+documentclass: ctexart
+classoption: hyperref,
+---
+
+```{r setup, include = FALSE}
+source("./src/Rmarkdown_config.R")
+
+## global options ===================================
+knitr::opts_chunk$set(
+  width = config$width,
+  fig.width = config$fig.width,
+  fig.asp = config$fig.asp,
+  out.width = config$out.width,
+  fig.align = config$fig.align,
+  fig.path = config$fig.path,
+  fig.show = config$fig.show,
+  warn = config$warn,
+  warning = config$warning,
+  message = config$message,
+  echo = config$echo,
+  eval = config$eval,
+  tidy = config$tidy,
+  comment = config$comment,
+  collapse = config$collapse,
+  cache = config$cache,
+  cache.comments = config$cache.comments,
+  autodep = config$autodep
+)
+```
+
+```{r, echo=FALSE}
+downloadthis::download_dir(
+  path = "./src",
+  output_name = "Rscript",
+  button_label = "Download R scripts",
+  button_type = "danger",
+  self_contained = FALSE
+)
+downloadthis::download_dir(
+  path = "./data",
+  output_name = "data",
+  button_label = "Download data",
+  button_type = "warning",
+  self_contained = FALSE
+)
+downloadthis::download_dir(
+  path = "./css",
+  output_name = "css",
+  button_label = "Download css",
+  button_type = "success",
+  self_contained = FALSE
+)
+downloadthis::download_file(
+  path = "_output.yml",
+  output_name = "_output",
+  button_label = "Download config",
+  button_type = "default",
+  self_contained = FALSE
+)
+```
+
+```{r}
+# modules
+source("./src/plot-element.R")
+```
+
+## 基本动画
+
+```{r}
+x <- rnorm(100) %>% sort()
+y <- 0.5 * x + rnorm(100, sd = 0.1)
+
+dt <- data.table(
+  x = x,
+  y = y,
+  f = 1:100
+)
+
+animation <- plot_ly(
+  data = dt, x = ~x, y = ~y,
+  type = "scatter", mode = "markers",
+  marker = list(color = "lightgrey", opacity = 0.5)
+) %>%
+  add_markers(
+    x = ~x, y = ~y,
+    frame = ~f, # frame 为滑动条
+    showlegend = F,
+    marker = list(color = "red")
+  )
+
+animation %>%
+  saveWidget("../figure/animation/moving-point.html",
+    selfcontained = F,
+    libdir = "lib"
+  )
+
+animation
+
+
+animation2 <- plot_ly(
+  data = gapminder::gapminder,
+  x = ~gdpPercap,
+  y = ~lifeExp,
+  size = ~pop,
+  color = ~continent,
+  frame = ~year,
+  text = ~country,
+  hoverinfo = "text", # 鼠标悬停时只显示国名
+  type = "scatter",
+  mode = "markers"
+) %>%
+  layout(
+    xaxis = list(type = "log") # x轴改为对数坐标
+  ) %>%
+  animation_opts(
+    frame = 1000
+  )
+
+animation2 %>%
+  saveWidget("../figure/animation/gapminder.html",
+    selfcontained = F,
+    libdir = "lib"
+  )
+
+animation2 %>%
+  save_image(
+    file = "../figure/animation/gapminder.svg",
+    width = 800, height = 600
+  )
+
+animation2
+```
+
+## 累积动画, cumulative
+
+累积图的精髓在于数据处理
+
+```{r}
+# 核心函数
+cumulate_by <- function(data, formula) {
+  var <- lazyeval::f_eval(formula, data)
+  # f_eval(formula, data)意为针对data中的变量执行formula公式
+  levels <- var %>%
+    unique() %>%
+    sort()
+  n <- length(levels)
+  1:n %>%
+    map_dfr(~ data %>%
+      filter(var %in% levels[1:.x]) %>%
+      mutate(frame = levels[.x]))
+}
+
+data <- txhousing %>%
+  as.data.table() %>%
+  filter(year > 2005, city %in% c("Abilene", "Bay Area")) %>%
+  cumulate_by(~date)
+
+# 观察 frame 列，这就是累积排序
+data %>%
+  select(date, city, frame, median) %>%
+  head(20)
+```
+
+
+```{r}
+fig <- plot_ly(
+  data = data,
+  x = ~date,
+  y = ~median,
+  split = ~city,
+  frame = ~frame,
+  type = "scatter",
+  mode = "lines",
+  line = list(simplyfy = F)
+) %>%
+  layout(
+    xaxis = list(
+      title = "Date",
+      zeroline = F
+    ),
+    yaxis = list(
+      title = "Median",
+      zeroline = F
+    )
+  ) %>%
+  animation_opts(
+    frame = 100,
+    transition = 0,
+    redraw = FALSE
+  ) %>%
+  animation_slider(
+    hide = T
+  ) %>%
+  animation_button(
+    x = 1, xanchor = "right", y = 0, yanchor = "bottom"
+  )
+
+fig
+```
+
+
+## ggplot转plotly动画
+
+在 ggplot 中将时间变量映射为 frame
+
+```{r}
+data(gapminder, package = "gapminder")
+gg <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
+  geom_point(aes(size = pop, frame = year, ids = country)) +
+  scale_x_log10()
+ggplotly(gg)
+```

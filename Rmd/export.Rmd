@@ -1,0 +1,79 @@
+---
+title: "Export"
+subtitle: ""
+author: "Humoon"
+date: "`r Sys.Date()`"
+output: html_document
+documentclass: ctexart
+classoption: hyperref,
+---
+
+```{r setup, include = FALSE}
+source("./src/Rmarkdown_config.R")
+
+## global options ===================================
+knitr::opts_chunk$set(
+  width = config$width,
+  fig.width = config$fig.width,
+  fig.asp = config$fig.asp,
+  out.width = config$out.width,
+  fig.align = config$fig.align,
+  fig.path = config$fig.path,
+  fig.show = config$fig.show,
+  warn = config$warn,
+  warning = config$warning,
+  message = config$message,
+  echo = config$echo,
+  eval = config$eval,
+  tidy = config$tidy,
+  comment = config$comment,
+  collapse = config$collapse,
+  cache = config$cache,
+  cache.comments = config$cache.comments,
+  autodep = config$autodep
+)
+```
+
+```{r, echo=FALSE}
+downloadthis::download_dir(
+  path = "./src",
+  output_name = "Rscript",
+  button_label = "Download R scripts",
+  button_type = "danger",
+  self_contained = FALSE
+)
+downloadthis::download_dir(
+  path = "./data",
+  output_name = "data",
+  button_label = "Download data",
+  button_type = "warning",
+  self_contained = FALSE
+)
+downloadthis::download_dir(
+  path = "./css",
+  output_name = "css",
+  button_label = "Download css",
+  button_type = "success",
+  self_contained = FALSE
+)
+downloadthis::download_file(
+  path = "_output.yml",
+  output_name = "_output",
+  button_label = "Download config",
+  button_type = "default",
+  self_contained = FALSE
+)
+```
+
+```{r}
+source("./src/plot-element.R")
+```
+
+```{r}
+p <- plot_ly(x = 1:10, y = 1:10) %>% add_markers()
+p
+
+plotly::save_image(p, file = "../figure/export-png.png", width = 800, height = 600)
+plotly::save_image(p, file = "../figure/export-svg.svg", width = 600, height = 600)
+```
+
