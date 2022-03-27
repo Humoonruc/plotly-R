@@ -1,0 +1,389 @@
+---
+title: "Plotly Demo"
+subtitle: ''
+author: "Humoon"
+date: "`r Sys.Date()`"
+output: html_document
+documentclass: ctexart
+classoption: hyperref,
+---
+
+```{r setup, include = FALSE}
+source("./config/Rmarkdown_config.R")
+
+## global options ===================================
+knitr::opts_chunk$set(
+  width = config$width,
+  fig.width = config$fig.width,
+  fig.asp = config$fig.asp,
+  out.width = config$out.width,
+  fig.align = config$fig.align,
+  fig.path = config$fig.path,
+  fig.show = config$fig.show,
+  warn = config$warn,
+  warning = config$warning,
+  message = config$message,
+  echo = config$echo,
+  eval = config$eval,
+  tidy = config$tidy,
+  comment = config$comment,
+  collapse = config$collapse,
+  cache = config$cache,
+  cache.comments = config$cache.comments,
+  autodep = config$autodep
+)
+```
+
+
+## Gallery
+
+
+### 1. Line Plot
+
+```{r}
+plot_ly(
+  x = c(1, 2, 3),
+  y = c(5, 7, 8),
+  type = "scatter",
+  mode = "lines"
+)
+```
+
+
+### 2. Scatter Plot
+```{r}
+plot_ly(
+  x = c(1, 2, 3),
+  y = c(5, 7, 8),
+  type = "scatter",
+  mode = "markers",
+  size = c(2, 5, 10),
+  marker = list(color = c("red", "blue", "green"))
+)
+
+plot_ly(
+  data = iris,
+  x = ~Petal.Length,
+  y = ~Petal.Width,
+  color = ~Species,
+  type = "scatter",
+  mode = "markers"
+)
+```
+
+### 3. Bar Chart
+
+条形图横轴默认按字母排序，要加入`categoryorder = "array"`选项，才会按给定的顺序排序
+
+```{r}
+plot_ly(
+  x = c("C", "B", "A"),
+  y = c(5, 10, 8),
+  type = "bar"
+) %>%
+  layout(xaxis = list(categoryarray = ~names, categoryorder = "array"))
+```
+
+### 4. Heatmap
+
+```{r}
+class(volcano)
+
+str(volcano)
+
+plot_ly(z = volcano, type = "heatmap")
+
+# 若矩阵的行列均为分类变量，则需要标准矩阵的行、列名
+# plot_ly(
+#   x = rownames(main_intimate_matrix),
+#   y = colnames(main_intimate_matrix),
+#   z = main_intimate_matrix,
+#   type = "heatmap"
+# )
+```
+
+### 5. Area Plot
+```{r}
+plot_ly(
+  x = c(1, 2, 3),
+  y = c(5, 6, 8),
+  type = "scatter",
+  mode = "lines",
+  fill = "tozeroy" # from line down to x axis
+)
+```
+
+
+### 6. Histogram
+
+```{r}
+x <- rchisq(100, 5, 0)
+x
+
+plot_ly(x = x, type = "histogram")
+```
+
+### 7. Box Plot
+```{r}
+plot_ly(y = rnorm(50), type = "box") %>%
+  add_trace(y = rnorm(50, 1))
+
+plot_ly(midwest, x = ~percollege, color = ~state, type = "box")
+```
+
+### 8. 2D Histogram
+```{r}
+plot_ly(
+  x = rnorm(1000, sd = 10),
+  y = rnorm(1000, sd = 5),
+  type = "histogram2d"
+)
+```
+
+### 9. Bubble Map
+```{r}
+plot_ly(
+  type = "scattergeo",
+  lon = c(-73.5, 151.2),
+  lat = c(45.5, -33.8),
+  marker = list(color = c("red", "blue"), size = c(30, 50), mode = "markers")
+)
+```
+### 10. Choropleth Map
+
+```{r}
+plot_ly(
+  type = "choropleth",
+  locations = c("AZ", "CA", "VT"),
+  locationmode = "USA-states",
+  colorscale = "Viridis",
+  z = c(10, 20, 40)
+) %>%
+  layout(geo = list(scope = "usa"))
+```
+
+### 11. Scatter Map
+
+```{r}
+plot_ly(
+  type = "scattergeo",
+  lon = c(42, 39),
+  lat = c(12, 22),
+  text = c("Rome", "Greece"),
+  mode = "markers"
+)
+```
+
+### 12. 3D Surface Plot
+
+- type:`surface`，
+- z:`~matrix`
+- 注意，如果要指定 x 和 y 轴，必须用 `z = outer(x, y, .f) %>% t()`，一定要转置！
+
+
+```{r}
+# 不指定x和y时，3D surface图的x轴和y轴分别是矩阵列和行的index，从0开始间隔1计算
+plot_ly(type = "surface", z = ~volcano)
+
+# 指定x和y的标准3D曲面生成流程：关键函数 outer(x, y, .f) %>% t()
+library(tidyverse)
+library(plotly)
+library(htmlwidgets)
+
+scale <- 1000
+
+sigmoid <- function(x) {
+  1 / (1 + exp(-x))
+}
+
+cal_z <- function(x, y) {
+  10 * x - 15 * y
+}
+
+cal_a <- function(x, y) {
+  cal_z(x, y) %>% sigmoid()
+}
+
+
+x1 <- runif(scale) %>% sort()
+y1 <- runif(scale) %>% sort()
+z1 <- outer(x1, y1, cal_a) %>% t()
+p1 <- plot_ly(type = "surface", x = x1, y = y1, z = ~z1)
+saveWidget(p1, "../figure/sigmoid曲面1.html", selfcontained = F, libdir = "lib")
+p1
+
+x2 <- seq(0, 1, length.out = scale + 1)
+y2 <- seq(0, 1, length.out = scale + 1)
+z2 <- outer(x2, y2, cal_a) %>% t()
+p2 <- plot_ly(type = "surface", x = x2, y = y2, z = ~z2)
+saveWidget(p2, "../figure/sigmoid曲面2.html", selfcontained = F, libdir = "lib")
+p2
+```
+
+
+```{r}
+## config ===============================================
+x <- seq(0, 100, 5)
+y <- seq(100, 200, 5)
+params <- 1:5 * 10
+
+## plotting ===============================================
+# 图的框架
+p0 <- plot_ly(type = "surface", showscale = F)
+
+p <- params %>%
+  # 1. 参数由函数工厂加工成函数list
+  map(~ function(a, b) 0.02 * a + 0.015 * b - 0.0008 * a * b + 0.0007 * a^2 - 0.0002 * b^2 + .) %>%
+  # 2. 函数list作用于x, y, 得到 matrix list
+  map(~ outer(x, y, .) %>% t()) %>%
+  # 3. 所有的 matrix 依次作为截面，叠加到 p0上
+  reduce(
+    .f = function(p, m) p %>% add_surface(x = x, y = y, z = ~m),
+    .init = p0
+  )
+p
+```
+
+
+### 13. 3D Line Plot
+
+
+- type:`scatter3d`，
+- mode:`lines`
+
+```{r}
+plot_ly(
+  type = "scatter3d",
+  x = c(9, 8, 5, 1),
+  y = c(1, 2, 4, 8),
+  z = c(11, 8, 15, 3),
+  mode = "lines"
+)
+```
+
+### 14. 3D Scatter Plot
+
+
+- type:`scatter3d`，
+- mode:`markers`
+
+```{r}
+plot_ly(
+  type = "scatter3d",
+  x = c(9, 8, 5, 1),
+  y = c(1, 2, 4, 8),
+  z = c(11, 8, 15, 3),
+  mode = "markers"
+)
+```
+
+## Layout
+
+### 1. Legend
+
+```{r}
+set.seed(123)
+x <- 1:100
+y1 <- 2 * x + rnorm(100)
+y2 <- -2 * x + rnorm(100)
+
+plot_ly(x = x, y = y1, type = "scatter") %>%
+  add_trace(x = x, y = y2) %>%
+  layout(legend = list(
+    # x,y means where to put the legend box
+    x = 1, y = 0.5, bgcolor = "#ebebeb"
+  ))
+```
+
+### 2. Axes
+
+```{r}
+set.seed(123)
+x <- 1:100
+y1 <- 2 * x + rnorm(100)
+y2 <- -2 * x + rnorm(100)
+
+# axis config object
+axis_tempalte <- list(
+  showgrid = F,
+  zeroline = F,
+  nticks = 20,
+  showline = T,
+  title = "AXIS",
+  mirror = "all"
+)
+
+plot_ly(x = x, y = y1, type = "scatter") %>%
+  layout(xaxis = axis_tempalte, yaxis = axis_tempalte)
+```
+
+### Subplots
+
+```{r}
+subplot(
+  plot_ly(mtcars, x = ~mpg, y = ~qsec, name = "default"),
+  plot_ly(mtcars, x = ~mpg, y = ~qsec, name = "alpha"),
+  plot_ly(mtcars, x = ~mpg, y = ~wt)
+)
+```
+
+## Parameters
+
+#### `plot_ly()`
+
+- @param {data.frame} data
+- @param {vector} x, y, z
+- @param {string} type 
+- @param {string} mode
+- @param {vector} color, text, size
+- @param {string or vector} colorscale
+- @param {list} marker
+  - @name {string} color
+  - @name {list} symbol
+- @param {list} line
+  - @name {string} color
+  - @name {number} width
+
+
+#### `add_trace()`
+
+- @param {list}
+
+#### `layout()`
+
+https://plotly.com/r/reference/#Layout_and_layout_style_objects
+
+- @param {string} title
+- @param {list} xaxis, yaxis
+- @param {list} scene
+  - @name {list} xaxis, yaxis, zaxis
+- @param {list} geo
+- @param {list} legend
+- @param {list} annotations
+
+
+## Turn ggplot2 to plotly
+
+`ggplotly()`可以将ggplot2图对象转化为 plotly 图对象，然后使用plotly的API操作
+
+```{r}
+mydata <- data.frame(diamonds)
+mydata <- mydata[sample(nrow(mydata), 500), ]
+head(mydata)
+
+ggplot(mydata, aes(carat, price, colour = color)) +
+  geom_point()
+ggplotly()
+
+p <- ggplot(mydata, aes(carat, price, colour = color)) +
+  geom_point() +
+  theme_economist() +
+  scale_colour_economist() +
+  facet_wrap(~cut)
+class(p)
+
+p2 <- ggplotly(p)
+class(p2)
+p2
+```
+

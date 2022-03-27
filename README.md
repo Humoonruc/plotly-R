@@ -2,9 +2,7 @@
 
 
 
-本项目地址：
-
-#  Plotly
+#  Notes of R plotly
 
 安装：https://plotly.com/r/getting-started/
 
@@ -13,6 +11,8 @@
 基本部件：https://plotly.com/r/plotly-fundamentals/
 
 参数查询：https://plotly.com/r/reference/
+
+一些可能会用到的官方数据：[plotly/datasets: Datasets used in Plotly examples and documentation (github.com)](https://github.com/plotly/datasets)
 
 ## Grammar
 
@@ -53,15 +53,33 @@ demo: https://plotly.com/r/creating-and-updating-figures/
 
 #### export plotly figure
 
-[export.Rmd](./Rmd/export.html)
+[export.Rmd](./src/export.html)
 
 将 plotly 生成的图保存为外部文件
 
 #### LaTeX in plotly
 
-<a href='./Rmd/LaTeX-in-plotly.html'><img src='./figure/LaTeX-in-plotly.svg'></a>
+<a href='./src/LaTeX-in-plotly.html'><img src='./figure/LaTeX-in-plotly.svg'></a>
 
 含有 $\LaTeX$ 的图，若保存时`selfcontained=FALSE`，则只有在（网络或本地）服务器上，主文件才能访问所需的依赖文件（mathjax），从而正确显示公式。
+
+#### Multiple Axes
+
+第二个y轴，用`layout()`中的`yaxis2=list(overlaying="y",  side="right"…)` 属性来设置，其数据在`add_trace()`中添加并写明 `yaxis = "y2"`
+
+https://plotly.com/r/multiple-axes/
+
+#### Colorway
+
+设置多个 trace 的颜色
+
+```R
+layout(colorway = c('#f3cec9', '#e7a4b6', '#cd7eaf', '#a262a9', '#6f4d96', '#3d3b72', '#182844'))
+```
+
+
+
+
 
 ## Gallery
 
@@ -69,17 +87,17 @@ demo: https://plotly.com/r/creating-and-updating-figures/
 
 #### Bar Charts
 
-<a href='./Rmd/bar-chart.html'><img src='./figure/bar-chart.svg'></a>
+<a href='./src/bar-chart.html'><img src='./figure/bar-chart.svg'></a>
 
 #### Pie Charts
 
 #### Sunburst Charts
 
-点击可折叠
+点击可折叠子级块
 
 #### Tables
 
-<a href='./Rmd/table.html'><img src='./figure/table.svg'></a>
+<a href='./src/table.html'><img src='./figure/table.svg'></a>
 
 可拖动列
 
@@ -87,11 +105,13 @@ demo: https://plotly.com/r/creating-and-updating-figures/
 
 #### Treemap Charts
 
+
+
 ### Statistical Charts
 
 #### Regression
 
-<a href='./Rmd/regression.html'><img src='./figure/regression.svg'></a>
+<a href='./src/regression.html'><img src='./figure/regression.svg'></a>
 
 more demo: https://plotly.com/r/ml-regression/
 
@@ -125,21 +145,23 @@ K 线图
 
 ### Maps
 
-考虑上 D3.js
-
-#### Filled Area in Mapbox
+鉴于地图的标准格式为 GeoJson 和 TopoJson，还是考虑直接上 D3.js
 
 ### 3D Charts
 
 相机设置 https://plotly.com/python/3d-camera-controls/
 
-#### 3D Scatter, Line, Mesh, Cone
+#### 3D Scatter, Line
+
+#### 3D Cone
 
 #### 3D Surface
 
-#### 3D Tri-Surf Plots
+#### 3D Mesh
 
-三维模型的表面上色问题
+3D 模型的表面都是三角面。plotly 中的格式为：(x, y, z) 表示点的坐标，(i, j, k) 表示三角面的三个顶点的 index
+
+
 
 ### Subplots
 
@@ -151,11 +173,15 @@ more demo: https://plotly.com/r/subplots/
 
 #### Inset Plots
 
+https://plotly.com/r/insets/
+
 #### Map Subplots
 
 #### 3D Subplots
 
 #### Mixed Subplots
+
+https://plotly.com/r/mixed-subplots/
 
 ### Transforms
 
@@ -167,13 +193,32 @@ more demo: https://plotly.com/r/subplots/
 
 ### 控件
 
-#### Buttons
+`updatemenu()`
 
-#### Dropdown Events
+- restyle(): modify data or data attributes
+- relayout(): modify layout attributes
+- update(): modify data and layout attributes
+- animate():start or pause an animation (only available offline)
+
+R plotly 中的切换都是突兀的，不像 plotly.js 一样由中间帧和动画效果
+
+#### Buttons and Dropdown Events
+
+都是预先画好的内容，主要是用按钮点击切换图层和渲染的 style
+
+https://plotly.com/r/custom-buttons/
+
+https://plotly.com/r/dropdowns/
 
 #### Range Sliders and Selectors
 
-#### Sliders
+选取一定范围的数据，同时会改变坐标轴的 range
+
+https://plotly.com/r/range-slider/
+
+https://plotly.com/r/sliders/
+
+
 
 ### Animations
 
@@ -188,26 +233,47 @@ more demo: https://plotly.com/r/subplots/
 
 #### Basic and Cumulative Animations
 
-<a href='./Rmd/animation.html'><img src='./figure/animation/gapminder.svg'></a>
+<a href='./src/animation.html'><img src='./figure/animation/gapminder.svg'></a>
 
-
+`animation_opts()`设置动画属性，`frame`设置两帧之间的时间（毫秒），`transition`设置平滑动画的时间，`easing`设置插值的方式，`redraw`设为 F 可以提高性能
 
 ```R
-plotly::animation_opts(
+animation_opts(
   p,
   frame = 500,
   transition = frame,
   easing = "linear",
   redraw = TRUE,
-  mode = "immediate"
+  mode = "immediate" # 若有其他指令（如演示时用户的交互行为），立即停止播放响应要求
 )
 ```
 
-`animation_opts()`设置动画属性，`frame`设置两帧之间的时间（毫秒），`transition`设置平滑动画的时间，`easing`设置插值的方式，
-
 `animation_slider()`设置时间轴，`hide = FALSE`可以将其隐藏
 
+```R
+animation_slider(
+  hide = FALSE, # 是否隐藏动画进度条
+  currentvalue = list(
+    ## prefix = "YEAR: ",
+    font = list(color = "red")
+  )
+)
+```
+
 `animation_button()`设置开启动画的按钮，`label`属性可设置其上的文字
+
+```R
+    animation_button(
+      visible = TRUE,
+      type = "buttons", # 触发器是下拉菜单式 dropdown 还是按钮式 buttons
+      # direction = "up", # 若为 dropdown，菜单出现在触发器的哪个方向 up/down/left/right
+      x = 1.05, xanchor = "left",
+      y = 0, yanchor = "top",
+      label = "Run"
+    )
+```
+
+
 
 
 
@@ -273,8 +339,9 @@ width, height: 设置图形尺寸
 设置图表的标题，如下配置项
 
 1. text：字符串，标题内容；
-   1. 设置标题的标准写法是`title = list(text = "...")`，**若写为`title = "..."`，则会将之前设置的标题其他属性覆盖为默认值**！ 
-
+   1. 设置标题的标准写法是`title = list(text = "...")`，**若写为`title = "..."`，则会将之前设置的标题其他属性覆盖为默认值**！
+   1. text 中可以加入`<b></b>`等 html 标签设置文本样式
+   
 2. font：设置标题字体。包含：字体、颜色、大小等；
 3. x、y：取值0～1之间，设置在标准化坐标中位置，0.5为居中；
 4. xanchor：设置标题相对于x位置的水平对齐方式，有如下取值："auto" | "left" | "center" | "right" ；
