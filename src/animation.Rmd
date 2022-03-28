@@ -216,3 +216,66 @@ gg <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
   scale_x_log10()
 ggplotly(gg)
 ```
+
+## 3D 动画
+
+```{r}
+data <- data.table(
+  x = c(0, 0, 1, 1, 0, 0, 1, 1, NA, NA, NA, NA),
+  y = c(0, 1, 1, 0, 0, 1, 1, 0, NA, NA, NA, NA),
+  z = c(0, 0, 0, 0, 1, 1, 1, 1, NA, NA, NA, NA),
+  i = c(7, 0, 0, 0, 4, 4, 2, 6, 4, 0, 3, 7),
+  j = c(3, 4, 1, 2, 5, 6, 5, 5, 0, 1, 2, 2),
+  k = c(0, 7, 2, 3, 6, 7, 1, 2, 5, 5, 7, 6),
+  facecolor = rep(0, 12)
+)
+data[, frame := 0]
+data
+
+
+library(scales)
+num_to_color <- function(num_domain, color_range) {
+  color_scale <- colour_ramp(color_range)
+
+  num_domain %>%
+    rescale() %>%
+    color_scale()
+}
+
+data_alltime <- 1:50 %>%
+  reduce(function(d, t) {
+    data %>%
+      mutate(frame = t, facecolor = t * 0.02) %>%
+      rbind(d, .)
+  }, .init = data) %>%
+  mutate(facecolor = num_to_color(
+    facecolor,
+    c("white", "lightblue", "royalblue", "blue", "darkblue", "black")
+  ))
+
+fig <- plot_ly(
+  data = data_alltime,
+  x = ~x,
+  y = ~y,
+  z = ~z,
+  i = ~i,
+  j = ~j,
+  k = ~k,
+  facecolor = ~facecolor,
+  opacity = 0.5,
+  frame = ~frame,
+  type = "mesh3d"
+) %>%
+  layout(
+    scene = list(
+      camera = list(
+        eye = list(
+          x = 1,
+          y = -1,
+          z = 1
+        )
+      )
+    )
+  )
+fig
+```

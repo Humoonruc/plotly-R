@@ -49,7 +49,7 @@ demo: https://plotly.com/r/creating-and-updating-figures/
 - `annotations()`, [update annotations](https://plotly.com/r/text-and-annotations/)
 - `shapes()`, [update shapes](https://plotly.com/r/shapes/)
 
-但它们都不能更新 trace 中的数据，只有 Plotly.js 提供的 `Plotly.animate(p, trace, ...)` 可以做到
+但它们都不能更新 trace 中的数据，只有 Plotly.js 提供的 `Plotly.animate()` 可以做到
 
 #### export plotly figure
 
@@ -222,11 +222,13 @@ https://plotly.com/r/sliders/
 
 ### Animations
 
+2D 和 3D 图均可制作动画。
+
 制作动画有两种思路：
 
 1. 为数据框单独设置一个时间轴变量，每帧只显示部分数据，这是`R plotly`使用的方式。这造成数据量非常大，而且必须提前计算好，使用起来不够灵活——但也不是不能做。
    1. 比如平面上一个旋转过程，必须给出所有中间角度的变换矩阵，计算出过程中每一帧的坐标，组成一个大数据框，并将 frame 映射为时间。
-2. 间隔一定时间，实时更新数据，这是`plotly.js`使用的方式。制作动画，还是`plotly.js`或`d3.js`效果更好一些，更值得深入研究。
+2. 间隔一定时间，在原图上实时更新数据，这是`plotly.js`经常使用的方式。
    1. 动画属性文档: https://github.com/plotly/plotly.js/blob/master/src/plots/animation_attributes.js
    2. button 属性文档: https://github.com/plotly/plotly.js/blob/master/src/components/updatemenus/attributes.js
    3. slider 属性文档: https://github.com/plotly/plotly.js/blob/master/src/components/sliders/attributes.js

@@ -27,7 +27,9 @@ fig <- plot_ly(
 fig
 
 
-helicopter <- fread("./Rmd/data/3d-mesh-helicopter.csv")
+# helicopter
+
+helicopter <- fread("./src/data/3d-mesh-helicopter.csv")
 helicopter
 
 # 求各面三点的平均z值，以此作为该面涂色的依据
